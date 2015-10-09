@@ -1,5 +1,7 @@
 // Initialize your app
 var myApp = new Framework7({
+    preprocess: function (content, url, next) {
+        }
 });
 
 // Export selectors engine
@@ -29,9 +31,27 @@ Template7.data['page:popup'] = function(page) {
         "url": "https://news.ycombinator.com/",
         "selector": ".title>a",
         "isShow": true
+    }, {
+        "name": "好奇心日报",
+        "icon": "http://www.qdaily.com/favicon.ico",
+        "url": "http://www.qdaily.com/tags/1068.html",
+        "selector": ".com-grid-banner-article",
+        "media": ".imgcover>img",
+        "title": ".title-ribbon > h1"
     }];
     popup.sites = popup.initSites;
 
+    // 根据init json添加导航
+    function initNav(data) {
+        for (var i = 0; i < popup.sites.length; i++) {
+            $$(".tabs img").eq(i).attr({
+                "src": popup.sites[i].icon,
+                "title": popup.sites[i].name
+            });
+        }
+    };
+
+    initNav();
 
     popup.show = function(index) {
         popup.index = index;
@@ -39,19 +59,26 @@ Template7.data['page:popup'] = function(page) {
         console.log(site);
         // var site = "http://www.zhihu.com/";
         var sourceData = [];
-        var times = 13;
+        var times = 10;
 
         $$.ajax({
             type: 'get',
             url: site.url,
             timeout: 10000,
-            success: function(data) {
+            success: function(data) { 
+                // 找到选择器节点，输出链接和标题
                 var parsedData = $(data).find(site.selector);
+                var mediaData = $(data).find(site.media)||{};                
+                if (!site.media) {
+                    $$("img.item-media").hide();
+                    console.log("hide");
+                }
                 for (var i = 0; i < times; i++) {
                     var article = {
                         title: $.trim($(parsedData[i]).text()),
                         // 这时输出的地址可能不全
-                        href: $(parsedData[i]).attr("href")
+                        href: $(parsedData[i]).attr("href"),
+                        media: $(mediaData[i]).attr("src") || ""
                     };
                     if (article.href.indexOf("http") == -1) {
                         var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
@@ -59,9 +86,16 @@ Template7.data['page:popup'] = function(page) {
                             baseUrl += "/"
                         }
                         article.href = baseUrl + article.href;
+                        // article.media = baseUrl + article.media;
+                        article.media = baseUrl + article.media;
+                        // console.log(article.media);
                     };
+                    if (article.href.indexOf("qdaily") !== -1){
+                        article.title = $.trim($($(data).find(site.title)[i]).text())
+                        console.log(article.title);
+                    }
 
-                    console.log(article.href);
+                    console.log(article.media);
                     sourceData.push(article);
                 };
 
@@ -77,17 +111,24 @@ Template7.data['page:popup'] = function(page) {
                     "title": data[i].title
                 });
                 $("a.item-link").eq(i).text(data[i].title);
+                $(".item-media").eq(i).attr("src", data[i].media);
             }
         };
+
     };
+    // 默认载入
     popup.show(0);
-    $$('body').on('click', '.tabs li', function(e) {
+
+    $('body').on('click', '.tabs li', function(e) {
         popup.show(0);
         console.log('click');
     });
-    $$('body').on('click', 'a.item-link', function(e) {
+    $('body').on('click', 'a.item-link', function(e) {
         e.preventDefault();
-        chrome.tabs.create({ url: $(this).attr("href"), selected:false });
+        chrome.tabs.create({
+            url: $(this).attr("href"),
+            selected: false
+        });
     });
 };
 

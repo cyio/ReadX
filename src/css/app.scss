@@ -54,7 +54,7 @@ body {
 }
 .tabs li img {
   max-width: 100%;
-  border-radius: 50%;
+  // border-radius: 50%;
   width: 32px;
   height: 32px;
 }
@@ -64,7 +64,36 @@ img {
 .card-content-inner {
   padding: 8px 10px;
 }
+li.card a:visited {
+  color: #ACACAC;
+}
 // .card:nth-child(odd) {
   //     background-color: #F5F5F5;
   //
+//}
+.item-media{
+  display: none;
 }
+
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white, 50%)) {
+  ::-webkit-scrollbar {
+      width:  $size;
+      height: $size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: $foreground-color;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: $background-color;
+  }
+
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+@include scrollbars(.3em, #AAAAAB, #F1F1F1);
