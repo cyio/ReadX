@@ -1,5 +1,6 @@
 // Initialize your app
-var myApp = new Framework7({});
+var myApp = new Framework7({
+});
 
 // Export selectors engine
 var $$ = Dom7;
@@ -13,8 +14,6 @@ var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
-
-
 
 Template7.data['page:popup'] = function(page) {
     var popup = {};
@@ -81,12 +80,15 @@ Template7.data['page:popup'] = function(page) {
             }
         };
     };
-
-    $('body').on('click', '.tabs li', function(e) {
+    popup.show(0);
+    $$('body').on('click', '.tabs li', function(e) {
         popup.show(0);
         console.log('click');
     });
+    $$('body').on('click', 'a.item-link', function(e) {
+        e.preventDefault();
+        chrome.tabs.create({ url: $(this).attr("href"), selected:false });
+    });
 };
 
-// 调用执行
 Template7.data['page:popup']();
