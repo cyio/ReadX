@@ -1,0 +1,38 @@
+[
+  {
+    "name": "抽屉新热榜",
+    "icon": "http://cdn.marketplaceimages.windowsphone.com/v8/images/26738605-6e38-4991-9cdf-20ba1451d635?imageType=ws_icon_large",
+    "url": "http://dig.chouti.com/all/hot/recent/1",
+    "selector": ".part1>a.show-content"
+  },
+  {
+    "name": "Reddit",
+    "icon": "http://www.redditstatic.com/favicon.ico",
+    "url": "http://www.reddit.com/",
+    "selector": "#siteTable .title.may-blank"
+  },
+  {
+    "name": "最新美剧",
+    "icon": "http://cili003.com/favicon.ico",
+    "url": "http://cili003.com/",
+    "selector": ".w > .list-item > dd > .b > a"
+  },
+  {
+    "name": "Linux - Reddit",
+    "icon": "http://ww3.sinaimg.cn/large/4e5d3ea7gw1ety7g00n3nj204g056wef.jpg",
+    "url": "http://www.reddit.com/r/linux",
+    "selector": "#siteTable .title.may-blank"
+  },
+  {
+    "name": "JavaScript - Reddit",
+    "icon": "http://ww3.sinaimg.cn/large/4e5d3ea7gw1ety7eqg2rqj204g04ggli.jpg",
+    "url": "http://www.reddit.com/r/javascript",
+    "selector": "#siteTable .title.may-blank"
+  },
+  {
+    "name": "精选 - 传送门",
+    "icon": "http://chuansong.me/favicon.ico",
+    "url": "http://chuansong.me/select",
+    "selector": "a.question_link"
+    }
+]

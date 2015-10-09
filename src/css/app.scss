@@ -1,0 +1,70 @@
+body {
+  width: 350px;
+  height: 456px;
+}
+
+/* Your app custom files in this file */
+.view-left {
+  float: left;
+  width: 40px;
+  border-right: 1px solid #b2b2b2;
+}
+.view-main {
+  width: -webkit-calc(100% - 40px);
+  width: -moz-calc(100% - 40px);
+  width: -ms-calc(100% - 40px);
+  width: calc(100% - 40px);
+}
+.left {
+  background: #f1f1f1;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  position: relative;
+}
+.tabs {
+  width: 40px;
+  background: #f1f1f1;
+  max-height: 456px;
+  display: block;
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tabs li:first-child.active {
+  border-top-color: #fff !important;
+}
+.tabs li.active {
+  display: inline-block;
+  margin-left: -1px;
+  padding-left: 5px;
+  background-color: #ffffff !important;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  -webkit-filter: none;
+  filter: none;
+}
+.tabs li {
+  padding: 4px;
+  background: #f1f1f1;
+  width: 40px;
+}
+.tabs li:hover {
+  cursor: pointer;
+}
+.tabs li img {
+  max-width: 100%;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+img {
+  border: 0;
+}
+.card-content-inner {
+  padding: 8px 10px;
+}
+// .card:nth-child(odd) {
+  //     background-color: #F5F5F5;
+  //
+}

@@ -1,0 +1,11 @@
+Thumbs.db
+Desktop.ini
+.DS_Store
+.idea
+node_modules
+npm-debug.log
+deploy
+dist
+ghp
+bower_com*
+output

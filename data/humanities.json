@@ -1,0 +1,20 @@
+[
+  {
+    "name": "简书",
+    "icon": "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
+    "url": "http://www.jianshu.com/trending/now",
+    "selector": "h4>a"
+  },
+  {
+    "name": "知乎日报",
+    "icon": "http://daily.zhihu.com/favicon.ico",
+    "url": "http://daily.zhihu.com/",
+    "selector": ".box>a"
+  },
+  {
+    "name": "我的知乎",
+    "icon": "http://static.zhihu.com/static/favicon.ico",
+    "url": "http://www.zhihu.com/",
+    "selector": ".content>h2>a"
+  }
+]

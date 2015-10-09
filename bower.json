@@ -1,0 +1,24 @@
+{
+  "name": "ReadX",
+  "version": "0.0.0",
+  "authors": [
+    "cyio <icaner@qq.com>"
+  ],
+  "description": "A read tool",
+  "main": "popup.html",
+  "keywords": [
+    "chrome",
+    "read"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Framework7": "framework7#~1.2.0"
+  }
+}

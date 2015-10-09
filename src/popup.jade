@@ -1,0 +1,73 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  title ReadX
+  meta(name='viewport', content='initial-scale=1, maximum-scale=1')
+  link(rel='shortcut icon', href='/favicon.ico')
+  meta(name='apple-mobile-web-app-capable', content='yes')
+  meta(name='apple-mobile-web-app-status-bar-style', content='black')
+  link(rel='stylesheet', href='/css/framework7.ios.css')
+  link(rel='stylesheet', href='/css/framework7.ios.colors.css')
+  link(rel='stylesheet', href='/css/app.css')
+// Status bar overlay for fullscreen mode
+.statusbar-overlay
+// Panels overlay
+.panel-overlay
+// Left panel with reveal effect
+.panel.panel-left.panel-reveal
+  .content-block
+    p Left panel content goes here
+// Right panel with cover effect
+.panel.panel-right.panel-cover
+  .content-block
+    p Right panel content goes here
+// Views
+.views
+  // Left view
+  .view.view-left.navbar-through
+    //.navbar
+    //  .navbar-inner
+    //    .center.sliding Left View
+    .pages
+      .page(data-page='popup-left').left
+        ul.tabs
+          li
+            img(src="http://static.zhihu.com/static/favicon.ico" title="知乎")
+            
+    //   //left for nav
+  // Right view, it is main view
+  .view.view-main
+    // Pages
+    .pages
+      // Page, data-page contains page name
+      .page(data-page='popup')
+        // Scrollable page content
+        .page-content
+          .list-block
+            ul
+              li.card
+                div.card-content
+                  div.card-content-inner
+                    a.item-link(href='', target='_blank', title='', data-view='.view-main') 
+              li.card
+                div.card-content
+                  div.card-content-inner
+                    a.item-link(href='', target='_blank', title='', data-view='.view-main') 
+              li.card
+                div.card-content
+                  div.card-content-inner
+                    a.item-link(href='', target='_blank', title='', data-view='.view-main') 
+              li.card
+                div.card-content
+                  div.card-content-inner
+                    a.item-link(href='', target='_blank', title='', data-view='.view-main') 
+              li.card
+                div.card-content
+                  div.card-content-inner
+                    a.item-link(href='', target='_blank', title='', data-view='.view-main') 
+
+// 你的html代码
+script(type='text/javascript', src='/js/framework7.js', charset='utf-8')
+script(type='text/javascript', src='/js/zepto.js', charset='utf-8')
+script(src='/js/app.js')

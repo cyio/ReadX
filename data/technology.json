@@ -1,0 +1,75 @@
+[
+  {
+    "name": "startup news",
+    "icon": "http://news.dbanotes.net/logo.png",
+    "url": "http://news.dbanotes.net/",
+    "selector": ".title>a"
+  },
+  {
+    "name": "segmentfault",
+    "icon": "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
+    "url": "http://segmentfault.com/blogs",
+    "selector": ".title>a"
+  },
+  {
+    "name": "solidot",
+    "icon": "http://www.solidot.org/favicon.ico",
+    "url": "http://www.solidot.org/",
+    "selector": ".bg_htit>h2>a"
+
+  },
+  {
+    "name": "hacker news",
+    "icon": "https://news.ycombinator.com/favicon.ico",
+    "url": "https://news.ycombinator.com/",
+    "selector": ".title>a"
+  },
+  {
+    "name": "v2ex",
+    "icon": "http://www.v2ex.com/static/img/icon_rayps_64.png",
+    "url": "http://www.v2ex.com/?tab=hot",
+    "selector": "span.item_title > a"
+  },
+  {
+    "name": "果壳科学人",
+    "icon": "http://static.guokr.com/apps/minisite/images/688fdef8.i-logo.png",
+    "url": "http://www.guokr.com/scientific/",
+    "selector": ".article-title"
+  },
+  {
+    "name": "虎嗅看点",
+    "icon": "http://www.huxiu.com/favicon.ico",
+    "url": "http://www.huxiu.com/focus",
+    "selector": "h3>a"
+  },
+  {
+    "name": "PingWest快讯",
+    "icon": "http://www.pingwest.com/wp-content/themes/pingwest2014/images/touch-icon.png",
+    "url": "http://news.pingwest.com/",
+    "selector": ".topic_title>a"
+  },
+  {
+    "name": "极客公园",
+    "icon": "http://www.geekpark.net/icons/72x72.png",
+    "url": "http://www.geekpark.net/collections/%E7%BC%96%E8%BE%91%E7%B2%BE%E9%80%89",
+    "selector": ".title"
+  },
+  {
+    "name": "Engadget 中国版",
+    "icon": "http://www.blogsmithmedia.com/cn.engadget.com/media/favicon-96x96.png",
+    "url": "http://cn.engadget.com/",
+    "selector": ".h2>a"
+  },
+  {
+    "name": "湾区日报",
+    "icon": "http://wanqu.co/static/images/favicons/favicon-32x32.png",
+    "url": "http://wanqu.co/issues/",
+    "selector": "li.list-group-item>a"
+  },
+    {
+    "name": "前端开发 - 推酷",
+    "icon": "http://www.tuicool.com/favicon.ico",
+    "url": "http://www.tuicool.com/topics/11000079?st=0&lang=0",
+    "selector": "a.article-list-title"
+  }
+]
