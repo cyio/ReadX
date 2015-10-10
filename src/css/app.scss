@@ -61,7 +61,7 @@ body {
   padding: 4px 2px;
   background: #f1f1f1;
   -webkit-filter: grayscale(100%);
-  filter: grayscale(100%); 
+  filter: grayscale(100%);
 }
 
 .tabs li:hover {
@@ -69,13 +69,13 @@ body {
 }
 
 .tabs li.active {
-    background-color: #ffffff!important;
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
-    opacity: 1;
-    -webkit-filter: grayscale(0%);
-    filter: grayscale(0%); 
-}    
+  background-color: #ffffff!important;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  opacity: 1;
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
 
 .tabs li img {
   max-width: 100%;
@@ -84,8 +84,16 @@ body {
   height: 34px;
 }
 
+.list-block ul:before {
+  height: 0;
+}
+
 img {
   border: 0;
+}
+
+.list-block ul {
+  background-color: #EFEFF4;
 }
 
 .card-content-inner {

@@ -117,6 +117,7 @@ Template7.data['page:popup'] = function(page) {
         "url": "http://www.tuicool.com/topics/11000079?st=0&lang=0",
         "selector": "a.article-list-title"
     }];
+    // TODO: 处理外部数据
     popup.sites = popup.initSites;
 
     // 根据init json添加导航
