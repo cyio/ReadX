@@ -1,6 +1,12 @@
 body {
   width: 350px;
-  height: 456px;
+  height: 485px;
+}
+::-webkit-scrollbar {
+  display: none; }
+
+.list-block {
+    margin: 35px 0 0 0;
 }
 
 /* Your app custom files in this file */
@@ -26,7 +32,8 @@ body {
   background: #f1f1f1;
   max-height: 456px;
   display: block;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -34,35 +41,33 @@ body {
 .tabs li:first-child.active {
   border-top-color: #fff !important;
 }
-.tabs li.active {
-  display: inline-block;
-  margin-left: -1px;
-  padding-left: 5px;
-  background-color: #ffffff !important;
-  border-top: 1px solid #dddddd;
-  border-bottom: 1px solid #dddddd;
-  -webkit-filter: none;
-  filter: none;
+.tabs li img.active {
+  box-shadow: 10px 10px 20px #67BE3E,1px 10px 20px #C8C8C8;
 }
 .tabs li {
-  padding: 4px;
+  padding: 4px 2px;
   background: #f1f1f1;
-  width: 40px;
 }
 .tabs li:hover {
   cursor: pointer;
 }
 .tabs li img {
   max-width: 100%;
-  // border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
 }
 img {
   border: 0;
 }
 .card-content-inner {
   padding: 8px 10px;
+}
+
+li.card a{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 li.card a:visited {
   color: #ACACAC;
