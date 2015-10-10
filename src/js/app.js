@@ -4,7 +4,7 @@ var myApp = new Framework7({
 });
 
 // Export selectors engine
-var $$ = Dom7;
+// var $$ = Dom7;
 
 // Add views
 var leftView = myApp.addView('.view-left', {
@@ -25,7 +25,7 @@ Template7.data['page:popup'] = function(page) {
         "selector": ".content>h2>a",
         "isShow": true
     }, {
-        "name": "hacker news",
+        "name": "Hacker News",
         "icon": "https://news.ycombinator.com/favicon.ico",
         "url": "https://news.ycombinator.com/",
         "selector": ".title>a",
@@ -38,7 +38,7 @@ Template7.data['page:popup'] = function(page) {
         "media": ".imgcover>img",
         "title": ".title-ribbon > h1"
     }, {
-        "name": "segmentfault",
+        "name": "SegmentFault",
         "url": "http://segmentfault.com/blogs",
         "icon": "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
         "selector": ".title>a",
@@ -50,13 +50,13 @@ Template7.data['page:popup'] = function(page) {
         "selector": "h4>a",
         "isShow": false
     }, {
-        "name": "solidot",
+        "name": "Solidot",
         "icon": "http://www.solidot.org/favicon.ico",
         "url": "http://www.solidot.org/",
         "selector": ".bg_htit>h2>a",
         "isShow": true
     }, {
-        "name": "v2ex",
+        "name": "V2EX",
         "icon": "http://www.v2ex.com/static/img/icon_rayps_64.png",
         "url": "http://www.v2ex.com/?tab=hot",
         "selector": "span.item_title > a",
@@ -91,6 +91,31 @@ Template7.data['page:popup'] = function(page) {
         "url": "http://chuansong.me/select",
         "selector": "a.question_link",
         "isShow": true
+    }, {
+        "name": "果壳科学人",
+        "icon": "http://static.guokr.com/apps/minisite/images/688fdef8.i-logo.png",
+        "url": "http://www.guokr.com/scientific/",
+        "selector": ".article-title"
+    }, {
+        "name": "虎嗅看点",
+        "icon": "http://www.huxiu.com/favicon.ico",
+        "url": "http://www.huxiu.com/focus",
+        "selector": "h3>a"
+    }, {
+        "name": "PingWest快讯",
+        "icon": "http://www.pingwest.com/wp-content/themes/pingwest2014/images/touch-icon.png",
+        "url": "http://news.pingwest.com/",
+        "selector": ".demo-wall ul a"
+    }, {
+        "name": "极客公园",
+        "icon": "http://www.geekpark.net/icons/72x72.png",
+        "url": "http://www.geekpark.net/collections/%E7%BC%96%E8%BE%91%E7%B2%BE%E9%80%89",
+        "selector": ".title"
+    }, {
+        "name": "前端开发 - 推酷",
+        "icon": "http://www.tuicool.com/favicon.ico",
+        "url": "http://www.tuicool.com/topics/11000079?st=0&lang=0",
+        "selector": "a.article-list-title"
     }];
     popup.sites = popup.initSites;
 
@@ -114,9 +139,11 @@ Template7.data['page:popup'] = function(page) {
         var times = 10;
         $('.view-main ul').html('');
         $('.view-main ul .preloader').show('fast');
+        console.log(site.name);
+        $('.view-main .sliding').text(site.name);
         console.log('show');
 
-        $$.ajax({
+        $.ajax({
             type: 'get',
             url: site.url,
             timeout: 10000,
@@ -152,7 +179,7 @@ Template7.data['page:popup'] = function(page) {
 
                 toInsert(sourceData);
                 if (!site.media) {
-                    $$("img.item-media").hide();
+                    $("img.item-media").hide();
                     console.log("hide");
                 }
             }
@@ -165,7 +192,7 @@ Template7.data['page:popup'] = function(page) {
                 var li = $('<div/>').html(string).contents();
                 var ul = $('.view-main ul');
                 ul.append(li);
-                // li.appendTo(ul).show(400);
+                // li.appendTo(ul).show('slow');
             }
             $('.view-main ul .preloader').hide();
         };

@@ -1,36 +1,46 @@
 body {
   width: 350px;
-  height: 485px;
+  height: 505px;
 }
+
 ::-webkit-scrollbar {
-  display: none; }
+  display: none;
+}
 
 .list-block {
-    margin: 35px 0 0 0;
+  margin: 0;
 }
 
-/* Your app custom files in this file */
 .view-left {
   float: left;
   width: 40px;
   border-right: 1px solid #b2b2b2;
 }
+
 .view-main {
   width: -webkit-calc(100% - 40px);
   width: -moz-calc(100% - 40px);
   width: -ms-calc(100% - 40px);
   width: calc(100% - 40px);
 }
+
 .left {
   background: #f1f1f1;
   border-bottom: 1px solid #ddd;
   overflow: hidden;
   position: relative;
 }
+
+.main-title {
+  font-weight: 200;
+  font-size: 28px;
+  color: #BFB4B4;
+}
+
 .tabs {
   width: 40px;
   background: #f1f1f1;
-  max-height: 456px;
+  max-height: 466px;
   display: block;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -38,66 +48,72 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .tabs li:first-child.active {
   border-top-color: #fff !important;
 }
+
 .tabs li img.active {
-  box-shadow: 10px 10px 20px #67BE3E,1px 10px 20px #C8C8C8;
+  box-shadow: 10px 10px 20px #67BE3E, 1px 10px 20px #C8C8C8;
 }
+
 .tabs li {
   padding: 4px 2px;
   background: #f1f1f1;
 }
+
 .tabs li:hover {
   cursor: pointer;
 }
+
 .tabs li img {
   max-width: 100%;
   border-radius: 50%;
   width: 34px;
   height: 34px;
 }
+
 img {
   border: 0;
 }
+
 .card-content-inner {
   padding: 8px 10px;
 }
 
-li.card a{
+li.card a {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
 li.card a:visited {
   color: #ACACAC;
 }
+
 // .card:nth-child(odd) {
-  //     background-color: #F5F5F5;
-  //
+//     background-color: #F5F5F5;
+//
 //}
 .preloader {
   position: absolute;
-  top:200px;
-  left:135px;
+  top: 200px;
+  left: 135px;
   width: 30px;
-  height: 30px; 
+  height: 30px;
 }
 
 @mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white, 50%)) {
   ::-webkit-scrollbar {
-      width:  $size;
-      height: $size;
+    width: $size;
+    height: $size;
   }
-
   ::-webkit-scrollbar-thumb {
-      background: $foreground-color;
+    background: $foreground-color;
   }
-
   ::-webkit-scrollbar-track {
-      background: $background-color;
+    background: $background-color;
   }
-
   // For Internet Explorer
   body {
     scrollbar-face-color: $foreground-color;
