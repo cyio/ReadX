@@ -60,11 +60,22 @@ body {
 .tabs li {
   padding: 4px 2px;
   background: #f1f1f1;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%); 
 }
 
 .tabs li:hover {
   cursor: pointer;
 }
+
+.tabs li.active {
+    background-color: #ffffff!important;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    opacity: 1;
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%); 
+}    
 
 .tabs li img {
   max-width: 100%;

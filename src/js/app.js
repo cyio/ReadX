@@ -200,13 +200,13 @@ Template7.data['page:popup'] = function(page) {
     };
     // 默认载入
     popup.show(0);
+    $('.tabs li').eq(0).addClass('active');
 
     $('body').on('click', '.tabs li', function(e) {
+        $('.tabs li').removeClass('active');
+        $(this).addClass('active');
         var id = $(this).children('img').attr('data-id');
-        // console.log('id'+id);
         var ul = $('.view-main ul');
-        console.log(ul.children());
-        // ul.remove(ul.children());
         popup.show(id);
     });
 
