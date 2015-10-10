@@ -86,12 +86,6 @@ Template7.data['page:popup'] = function(page) {
         "selector": "#siteTable .title.may-blank",
         "isShow": true
     }, {
-        "name": "国际纵览 - 纽约时报中文网",
-        "icon": "http://d2qpqq35l60wq5.cloudfront.net/favicon.ico",
-        "url": "http://d2qpqq35l60wq5.cloudfront.net/",
-        "selector": ".nytcn_headline a",
-        "isShow": true
-    }, {
         "name": "精选 - 传送门",
         "icon": "http://chuansong.me/favicon.ico",
         "url": "http://chuansong.me/select",
@@ -114,11 +108,13 @@ Template7.data['page:popup'] = function(page) {
     popup.show = function(index) {
         popup.index = index;
         var site = popup.sites[index];
-        console.log(index);
-        console.log(site);
+        // console.log(index);
         // var site = "http://www.zhihu.com/";
         var sourceData = [];
         var times = 10;
+        $('.view-main ul').html('');
+        $('.view-main ul .preloader').show('fast');
+        console.log('show');
 
         $$.ajax({
             type: 'get',
@@ -164,7 +160,6 @@ Template7.data['page:popup'] = function(page) {
 
         // 插入页面
         function toInsert(data) {
-            $('.view-main ul').html('');
             for (var i = 0; i < times; i++) {
                 var string = '<li class="card"><div class="card-content"><div class="card-content-inner"><a href=' + data[i].href + ' target="_blank" title="' + data[i].title + '" data-view=".view-main" class="item-link external">' + data[i].title + ' <img src=' + data[i].media + ' width="100%" class="item-media"></a></div></div></li>';
                 var li = $('<div/>').html(string).contents();
