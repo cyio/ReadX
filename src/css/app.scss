@@ -71,8 +71,12 @@ li.card a:visited {
   //     background-color: #F5F5F5;
   //
 //}
-.item-media{
-  display: none;
+.preloader {
+  position: absolute;
+  top:120px;
+  left:135px;
+  width: 30px;
+  height: 30px; 
 }
 
 @mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white, 50%)) {

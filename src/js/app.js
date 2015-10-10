@@ -60,7 +60,12 @@ Template7.data['page:popup'] = function(page) {
         // var site = "http://www.zhihu.com/";
         var sourceData = [];
         var times = 10;
-
+        
+        if (!site.media) {
+            $$("img.item-media").hide();
+            console.log("hide");
+        }
+        
         $$.ajax({
             type: 'get',
             url: site.url,
@@ -69,10 +74,7 @@ Template7.data['page:popup'] = function(page) {
                 // 找到选择器节点，输出链接和标题
                 var parsedData = $(data).find(site.selector);
                 var mediaData = $(data).find(site.media)||{};                
-                if (!site.media) {
-                    $$("img.item-media").hide();
-                    console.log("hide");
-                }
+
                 for (var i = 0; i < times; i++) {
                     var article = {
                         title: $.trim($(parsedData[i]).text()),
@@ -104,15 +106,14 @@ Template7.data['page:popup'] = function(page) {
         });
 
         // 插入页面
-        function toInsert(data) {
+        function toInsert(data) {            
             for (var i = 0; i < times; i++) {
-                $$(".item-link").eq(i).attr({
-                    "href": data[i].href,
-                    "title": data[i].title
-                });
-                $("a.item-link").eq(i).text(data[i].title);
-                $(".item-media").eq(i).attr("src", data[i].media);
+                var string = '<li class="card"><div class="card-content"><div class="card-content-inner"><a href=' + data[i].href + ' target="_blank" title=' + data[i].title + ' data-view=".view-main" class="item-link external">' + data[i].title + '</a><img src=' + data[i].media + ' width="100%" class="item-media" style="display: none;"></div></div></li>';
+                var li = $('<div/>').html(string).contents();
+                var ul = $('.view-main ul');
+                ul.append(li);
             }
+            $('.view-main ul .preloader').hide();
         };
 
     };
