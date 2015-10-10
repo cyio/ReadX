@@ -19,7 +19,14 @@ var mainView = myApp.addView('.view-main', {
 Template7.data['page:popup'] = function(page) {
     var popup = {};
     popup.initSites = [{
-        "name": "知乎",
+        "name": "我的知乎 - 最新回答",
+        "icon": "http://static.zhihu.com/static/favicon.ico",
+        "url": "http://www.zhihu.com/",
+        "selector": ".zh-summary>a.toggle-expand",
+        "isShow": true
+    }, 
+    {
+        "name": "我的知乎 - 最新问题",
         "icon": "http://static.zhihu.com/static/favicon.ico",
         "url": "http://www.zhihu.com/",
         "selector": ".content>h2>a",
@@ -143,7 +150,9 @@ Template7.data['page:popup'] = function(page) {
         console.log(site.name);
         $('.view-main .sliding').text(site.name);
         console.log('show');
-
+        if (site.name.indexOf("知乎") !== -1){
+            times = 8; 
+        }
         $.ajax({
             type: 'get',
             url: site.url,
@@ -159,6 +168,7 @@ Template7.data['page:popup'] = function(page) {
                         href: $(parsedData[i]).attr("href"),
                         media: $(mediaData[i]).attr("src") || ""
                     };
+                    console.log(article.title);
                     if (article.href.indexOf("http") == -1) {
                         var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
                         if (article.href[0] != "/") {
@@ -171,10 +181,13 @@ Template7.data['page:popup'] = function(page) {
                     };
                     if (article.href.indexOf("qdaily") !== -1) {
                         article.title = $.trim($($(data).find(site.title)[i]).text())
-                        console.log(article.title);
+                        // console.log(article.title);
                     }
-
-                    console.log(article.media);
+                    if (article.href.indexOf("zhihu") !== -1) {
+                        article.title = $.trim($($(data).find(site.selector)[i]).parent().text())
+                    }
+                    
+                    // console.log(article.media);
                     sourceData.push(article);
                 };
 
@@ -183,6 +196,12 @@ Template7.data['page:popup'] = function(page) {
                     $("img.item-media").hide();
                     console.log("hide");
                 }
+                if (article.href.indexOf("zhihu") !== -1) {
+                    $('li.card a').css({
+                        'white-space': 'normal'
+                    });
+                }
+
             }
         });
 
