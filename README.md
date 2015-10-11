@@ -1,6 +1,7 @@
 # ReadX 信息焦虑患者的解放工具
 
 Inspired by [十阅 wtser/tenread](https://github.com/wtser/tenread/)
+Chrome扩展下载：[](https://github.com/cyio/ReadX/raw/master/ReadX.crx)，需手动安装。
 
 继RSS衰落、Google Reader关闭、信息大爆炸后，从各个网站获取对自己有用的信息越难了，到处充斥软广、硬广、无脑水文，在各大网站首页间穿梭备感疲惫。
 
