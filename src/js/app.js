@@ -32,15 +32,6 @@ Template7.data['page:popup'] = function(page) {
         "selector": ".content>h2>a",
         "isShow": true
     }, {
-        "name": "微博",
-        "icon": "http://u1.sinaimg.cn/upload/h5/img/apple-touch-icon.png",
-        "url": "http://m.weibo.cn/",
-        "selector": {
-            "text": ".weibo-detail .default-content",
-            "href": ".card9"
-        },    
-        "isShow": true
-    }, {
         "name": "Hacker News",
         "icon": "https://news.ycombinator.com/favicon.ico",
         "url": "https://news.ycombinator.com/",
@@ -141,7 +132,7 @@ Template7.data['page:popup'] = function(page) {
         for (var i = 0; i < popup.sites.length; i++) {
             var string = '<li><img src=' + popup.sites[i].icon + ' title=' + popup.sites[i].name + ' data-id=' + i + '></li>';
             var imgNode = $('<div/>').html(string).contents();
-            $(".tabs").append(imgNode);
+            $(".left-nav").append(imgNode);
         }
     };
 
@@ -229,11 +220,11 @@ Template7.data['page:popup'] = function(page) {
     // 默认载入
     console.log(popup.sites[2].selector.href);
     
-    // popup.show(0);
-    $('.tabs li').eq(0).addClass('active');
+     popup.show(0);
+    $('.left-nav li').eq(0).addClass('active');
 
-    $('body').on('click', '.tabs li', function(e) {
-        $('.tabs li').removeClass('active');
+    $('body').on('click', '.left-nav li', function(e) {
+        $('.left-nav li').removeClass('active');
         $(this).addClass('active');
         var id = $(this).children('img').attr('data-id');
         var ul = $('.view-main ul');
@@ -242,7 +233,7 @@ Template7.data['page:popup'] = function(page) {
 
     $('body').on('click', 'a.item-link', function(e) {
         e.preventDefault();
-        chrome.tabs.create({
+        chrome.left-nav.create({
             url: $(this).attr("href"),
             selected: false
         });
@@ -250,3 +241,13 @@ Template7.data['page:popup'] = function(page) {
 };
 
 Template7.data['page:popup']();
+
+$(document).on('pageInit', function (e) {
+    // Get page data from event data
+    var page = e.detail.page;
+
+    if (page.name === 'popup') {
+        // Following code will be executed for page with data-page attribute equal to "about"
+        myApp.alert('Here comes About page');
+    }
+})
