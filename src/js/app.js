@@ -19,17 +19,26 @@ var mainView = myApp.addView('.view-main', {
 Template7.data['page:popup'] = function(page) {
     var popup = {};
     popup.initSites = [{
-        "name": "我的知乎 - 最新回答",
+        "name": "知乎 - 最新回答",
         "icon": "http://static.zhihu.com/static/favicon.ico",
         "url": "http://www.zhihu.com/",
         "selector": ".zh-summary>a.toggle-expand",
         "isShow": true
     }, 
     {
-        "name": "我的知乎 - 最新问题",
+        "name": "知乎 - 最新问题",
         "icon": "http://static.zhihu.com/static/favicon.ico",
         "url": "http://www.zhihu.com/",
         "selector": ".content>h2>a",
+        "isShow": true
+    }, {
+        "name": "微博",
+        "icon": "http://u1.sinaimg.cn/upload/h5/img/apple-touch-icon.png",
+        "url": "http://m.weibo.cn/",
+        "selector": {
+            "text": ".weibo-detail .default-content",
+            "href": ".card9"
+        },    
         "isShow": true
     }, {
         "name": "Hacker News",
@@ -128,22 +137,21 @@ Template7.data['page:popup'] = function(page) {
     popup.sites = popup.initSites;
 
     // 根据init json添加导航
-    function initNav(data) {
+    function createLeftNav(data) {
         for (var i = 0; i < popup.sites.length; i++) {
             var string = '<li><img src=' + popup.sites[i].icon + ' title=' + popup.sites[i].name + ' data-id=' + i + '></li>';
-            var img = $('<div/>').html(string).contents();
-            $(".tabs").append(img);
+            var imgNode = $('<div/>').html(string).contents();
+            $(".tabs").append(imgNode);
         }
     };
 
-    initNav();
+    createLeftNav();
 
     popup.show = function(index) {
         popup.index = index;
         var site = popup.sites[index];
-        // console.log(index);
         // var site = "http://www.zhihu.com/";
-        var sourceData = [];
+        var collections = [];
         var times = 10;
         $('.view-main ul').html('');
         $('.view-main ul .preloader').show('fast');
@@ -188,10 +196,10 @@ Template7.data['page:popup'] = function(page) {
                     }
                     
                     // console.log(article.media);
-                    sourceData.push(article);
+                    collections.push(article);
                 };
 
-                toInsert(sourceData);
+                createMainList(collections);
                 if (!site.media) {
                     $("img.item-media").hide();
                     console.log("hide");
@@ -206,7 +214,7 @@ Template7.data['page:popup'] = function(page) {
         });
 
         // 插入页面
-        function toInsert(data) {
+        function createMainList(data) {
             for (var i = 0; i < times; i++) {
                 var string = '<li class="card"><div class="card-content"><div class="card-content-inner"><a href=' + data[i].href + ' target="_blank" title="' + data[i].title + '" data-view=".view-main" class="item-link external">' + data[i].title + ' <img src=' + data[i].media + ' width="100%" class="item-media"></a></div></div></li>';
                 var li = $('<div/>').html(string).contents();
@@ -219,7 +227,9 @@ Template7.data['page:popup'] = function(page) {
 
     };
     // 默认载入
-    popup.show(0);
+    console.log(popup.sites[2].selector.href);
+    
+    // popup.show(0);
     $('.tabs li').eq(0).addClass('active');
 
     $('body').on('click', '.tabs li', function(e) {
