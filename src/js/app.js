@@ -50,10 +50,8 @@ Template7.data['page:popup'] = function(page) {
         "name": "好奇心日报",
         "icon": "http://www.qdaily.com/favicon.ico",
         "url": "http://www.qdaily.com/tags/1068.html",
-        "selector": {
-            text: ".com-grid-banner-article",
-            media: ".imgcover>img"
-        },
+        "selector": ".com-grid-banner-article",
+        "media": ".imgcover>img",
         "title": ".title-ribbon > h1"
     }, {
         "name": "SegmentFault",
@@ -170,7 +168,7 @@ Template7.data['page:popup'] = function(page) {
             success: function(data) {
                 // 找到选择器节点，输出链接和标题
                 var parsedData = $(data).find(site.selector);
-                var mediaData = $(data).find(site.selector.media) || {};
+                var mediaData = $(data).find(site.media) || {};
 
                 for (var i = 0; i < times; i++) {
                     var article = {
@@ -202,7 +200,7 @@ Template7.data['page:popup'] = function(page) {
                 };
 
                 createMainList(collections);
-                if (!site.selector.media) {
+                if (!site.media) {
                     $("img.item-media").hide();
                     console.log("hide");
                 }
