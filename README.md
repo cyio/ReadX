@@ -18,6 +18,8 @@ ReadX支持图文混排、知乎等信息源。
 * 自动化构建工具：fis3
 * 应用框架：[Framework7](http://www.idangero.us/framework7/) + Zepto
 
+## 无图无真相
+
 知乎上follow的答案
 
 ![](http://ww3.sinaimg.cn/large/4e5d3ea7jw1ewxhe06yu7j20ao0g841g.jpg)
@@ -31,6 +33,7 @@ ReadX支持图文混排、知乎等信息源。
 ![](http://ww2.sinaimg.cn/bmiddle/4e5d3ea7jw1ewxh18yc8cj20ak0g1n06.jpg)
 
 V站
+
 ![](http://ww3.sinaimg.cn/bmiddle/4e5d3ea7jw1ewxh35ps32j20ac0fmgn9.jpg)
 
 湾区日报
