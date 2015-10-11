@@ -13,7 +13,7 @@ body {
   ul {
     background-color: #EFEFF4;
 
-    :before {
+    &:before {
       height: 0;
     }
   }
@@ -28,19 +28,35 @@ body {
 .view-main {
   width: -webkit-calc(100% - 40px);
   width: calc(100% - 40px);
-}
 
-.left {
-  background: #f1f1f1;
-  border-bottom: 1px solid #ddd;
-  overflow: hidden;
-  position: relative;
-}
+  .main-title {
+    font-weight: 200;
+    font-size: 28px;
+    color: #BFB4B4;
+  }
 
-.main-title {
-  font-weight: 200;
-  font-size: 28px;
-  color: #BFB4B4;
+  .card-content-inner {
+    padding: 8px 10px;
+  }
+
+  li.card a {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    :visited {
+      color: #5F5F5F;
+    }
+  }
+
+  .preloader {
+    position: absolute;
+    top: 200px;
+    left: 135px;
+    width: 30px;
+    height: 30px;
+  }
+
 }
 
 .left-nav {
@@ -78,43 +94,14 @@ body {
       border-radius: 50%;
       width: 34px;
       height: 34px;
+
+      &.active {
+        box-shadow: 10px 10px 20px #67BE3E, 1px 10px 20px #C8C8C8;
+      }
+    }
+
+    &:first-child.active {
+      border-top-color: #fff !important;
     }
   }
-
-  li:first-child.active {
-    border-top-color: #fff !important;
-  }
-
-  li img.active {
-    box-shadow: 10px 10px 20px #67BE3E, 1px 10px 20px #C8C8C8;
-  }
-}
-
-//img {
-//  border: 0;
-//}
-
-.card-content-inner {
-  padding: 8px 10px;
-}
-
-li.card a {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-
-  :visited {
-    color: #5F5F5F;
-  }
-}
-
-// .card:nth-child(odd) {
-//     background-color: #F5F5F5;
-//}
-.preloader {
-  position: absolute;
-  top: 200px;
-  left: 135px;
-  width: 30px;
-  height: 30px;
 }

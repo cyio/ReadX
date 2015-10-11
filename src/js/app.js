@@ -233,7 +233,7 @@ Template7.data['page:popup'] = function(page) {
 
     $('body').on('click', 'a.item-link', function(e) {
         e.preventDefault();
-        chrome.left-nav.create({
+        chrome.tabs.create({
             url: $(this).attr("href"),
             selected: false
         });
