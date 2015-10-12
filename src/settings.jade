@@ -1,0 +1,21 @@
+.navbar
+  .navbar-inner
+    .left
+      a(href="#").back.link
+        i.icon.icon-back
+        //span Back
+    .center.sliding …Ë÷√
+    .right
+      a(href="#", data-panel="left").link.open-panel.icon-only
+        i.icon.icon-bars
+.pages
+  .page(data-page="settings")
+    .list-block
+      ul
+        // Smart select item
+        li
+          a.item-link.smart-select(href='#', data-searchbar='true', data-searchbar-placeholder='Search fruits')
+            | ... same Smart select Fruits structure as in previous example ...
+        li
+          a.item-link.smart-select(href='#', data-searchbar='true', data-searchbar-placeholder='Search cars')
+            | ... same Smart select Cars structure as in previous example ...

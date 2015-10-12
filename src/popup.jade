@@ -17,7 +17,9 @@ head
 // Left panel with reveal effect
 .panel.panel-left.panel-reveal
   .content-block
-    p Left panel content goes here
+    p 火星最美阅读应用
+    .content-block-inner
+      a(href="settings.html", data-view=".view-main").button.close-panel 设置
 // Right panel with cover effect
 .panel.panel-right.panel-cover
   .content-block
@@ -32,13 +34,15 @@ head
     .pages
       .page(data-page='popup-left').left
         ul.left-nav
-         
     //   //left for nav
   // Right view, it is main view
   .view.view-main.navbar-through
     .navbar
       .navbar-inner
         .main-title.sliding ReadX 资讯集中营
+        .right
+          a(href="#", data-panel="left").link.open-panel.icon-only
+            i.icon.icon-bars
     // Pages
     .pages
       // Page, data-page contains page name

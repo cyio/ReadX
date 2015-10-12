@@ -1,10 +1,10 @@
 // Initialize your app
 var myApp = new Framework7({
-    preprocess: function(content, url, next) {}
+    smartSelectInPopup:true
 });
 
 // Export selectors engine
-// var $$ = Dom7;
+ var $$ = Dom7;
 
 // Add views
 var leftView = myApp.addView('.view-left', {
@@ -16,20 +16,22 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+// 必须手动路由加载
+mainView.router.loadPage('popup.html');
+
 Template7.data['page:popup'] = function(page) {
     var popup = {};
     popup.initSites = [{
-        "name": "知乎 - 最新回答",
-        "icon": "http://static.zhihu.com/static/favicon.ico",
-        "url": "http://www.zhihu.com/",
-        "selector": ".zh-summary>a.toggle-expand",
-        "isShow": true
-    }, 
-    {
         "name": "知乎 - 最新问题",
         "icon": "http://static.zhihu.com/static/favicon.ico",
         "url": "http://www.zhihu.com/",
         "selector": ".content>h2>a",
+        "isShow": true
+    }, {
+        "name": "知乎 - 最新回答",
+        "icon": "http://static.zhihu.com/static/favicon.ico",
+        "url": "http://www.zhihu.com/",
+        "selector": ".zh-summary>a.toggle-expand",
         "isShow": true
     }, {
         "name": "Hacker News",
@@ -240,14 +242,13 @@ Template7.data['page:popup'] = function(page) {
     });
 };
 
-Template7.data['page:popup']();
-
 $(document).on('pageInit', function (e) {
     // Get page data from event data
     var page = e.detail.page;
 
     if (page.name === 'popup') {
         // Following code will be executed for page with data-page attribute equal to "about"
-        myApp.alert('Here comes About page');
+        //myApp.alert('Here comes About page');
+        Template7.data['page:popup']();
     }
 })
