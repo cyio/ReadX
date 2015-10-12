@@ -15,14 +15,18 @@ head
 // Panels overlay
 .panel-overlay
 // Left panel with reveal effect
-.panel.panel-left.panel-reveal
+.panel.panel-right.panel-reveal
+  .title-block 设置
   .content-block
-    .content-block-inner
-      a(href="settings.html", data-view=".view-main").button.close-panel 设置
-// Right panel with cover effect
-.panel.panel-right.panel-cover
-  .content-block
-    p Right panel content goes here
+    ul.panel-list
+      li
+        a(href="about.html", data-view=".view-main").close-panel
+          .item-inner
+            .item-title 项目说明
+            .item-media
+              i.iconfont.icon-qmark
+    a.button.button-big.fixed-bottom(href="https://github.com/cyio/ReadX" target="_blank").external 访问项目主页
+    //a(href="about.html", data-view=".view-main").button.close-panel
 // Views
 .views
   // Left view
