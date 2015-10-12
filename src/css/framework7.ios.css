@@ -1,6 +1,6 @@
 /**
- * Framework7 1.0.7
- * Full Featured Mobile HTML Framework For Building iOS Apps
+ * Framework7 1.2.0
+ * Full Featured Mobile HTML Framework For Building iOS & Android Apps
  * 
  * iOS Theme
  *
@@ -12,7 +12,7 @@
  * 
  * Licensed under MIT
  * 
- * Released on: July 6, 2015
+ * Released on: July 18, 2015
  */
 html,
 body {
@@ -1011,6 +1011,9 @@ html.pixel-ratio-3 .navbar:after {
   -webkit-transform: scaleY(0.33);
   transform: scaleY(0.33);
 }
+.navbar:after {
+  backface-visibility: hidden;
+}
 .navbar.no-border:after {
   display: none;
 }
@@ -1809,52 +1812,52 @@ i.icon.icon-f7 {
 i.icon.icon-form-name {
   width: 29px;
   height: 29px;
-  background-image: url("../img/i-form-name.png");
+  background-image: url("../img/i-form-name-ios.svg");
 }
 i.icon.icon-form-password {
   width: 29px;
   height: 29px;
-  background-image: url("../img/i-form-password.png");
+  background-image: url("../img/i-form-password-ios.svg");
 }
 i.icon.icon-form-email {
   width: 29px;
   height: 29px;
-  background-image: url("../img/i-form-email.png");
+  background-image: url("../img/i-form-email-ios.svg");
 }
 i.icon.icon-form-calendar {
   width: 29px;
   height: 29px;
-  background-image: url("../img/i-form-calendar.png");
+  background-image: url("../img/i-form-calendar-ios.svg");
 }
 i.icon.icon-form-tel {
   width: 29px;
   height: 29px;
-  background-image: url("../img/i-form-tel.png");
+  background-image: url("../img/i-form-tel-ios.svg");
 }
 i.icon.icon-form-gender {
   width: 29px;
   height: 29px;
-  background-image: url("../img/i-form-gender.png");
+  background-image: url("../img/i-form-gender-ios.svg");
 }
 i.icon.icon-form-toggle {
   width: 29px;
   height: 29px;
-  background-image: url("../img/i-form-toggle.png");
+  background-image: url("../img/i-form-toggle-ios.svg");
 }
 i.icon.icon-form-comment {
   width: 29px;
   height: 29px;
-  background-image: url("../img/i-form-comment.png");
+  background-image: url("../img/i-form-comment-ios.svg");
 }
 i.icon.icon-form-settings {
   width: 29px;
   height: 29px;
-  background-image: url("../img/i-form-settings.png");
+  background-image: url("../img/i-form-settings-ios.svg");
 }
 i.icon.icon-form-url {
   width: 29px;
   height: 29px;
-  background-image: url("../img/i-form-url.png");
+  background-image: url("../img/i-form-url-ios.svg");
 }
 i.icon.icon-next,
 i.icon.icon-prev {
