@@ -1,3 +1,5 @@
+@import "iconfont";
+
 body {
   width: 350px;
   height: 505px;
@@ -124,6 +126,26 @@ body {
   .content-block {
     margin-top: 0;
     color: #6d6d72;
+    //position: relative;
+
+    .commend-badge {
+      position: absolute;
+      bottom: 76px;
+      left: 90px;
+
+      .icon-commend {
+        color: #B24242;
+        font-size: 22px;
+        left: 90px;
+      }
+
+      span {
+        font-size: 14px;
+        color: #949494;
+        padding-left: 2px;
+      }
+    }
+
   }
 
   li .item-inner {
@@ -161,3 +183,4 @@ body {
     width: calc(100% - 30px);
   }
 }
+

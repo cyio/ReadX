@@ -20,5 +20,8 @@
   ],
   "dependencies": {
     "Framework7": "framework7#~1.2.0"
+  },
+  "devDependencies": {
+    "components-font-awesome": "~4.4.0"
   }
 }
