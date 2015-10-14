@@ -216,14 +216,15 @@ Template7.data['page:popup'] = function(page) {
                 // li.appendTo(ul).show('slow');
             }
             $('.view-main ul .preloader').hide();
+            // rotate('left');
         };
 
     };
     // 默认载入
     console.log(popup.sites[2].selector.href);
     
-     popup.show(0);
-    $('.left-nav li').eq(0).addClass('active');
+    popup.show(0);        
+    $('.left-nav li').eq(0).addClass('active');    
 
     $('body').on('click', '.left-nav li', function(e) {
         $('.left-nav li').removeClass('active');
@@ -239,7 +240,7 @@ Template7.data['page:popup'] = function(page) {
             url: $(this).attr("href"),
             selected: false
         });
-    });
+    });        
 };
 
 $(document).on('pageInit', function (e) {
@@ -252,3 +253,10 @@ $(document).on('pageInit', function (e) {
         Template7.data['page:popup']();
     }
 })
+
+function rotate (direction) {
+    var dire = 'rotate-' + direction
+    console.log(dire);
+    $('.list-block ul li').addClass(dire);
+}
+
