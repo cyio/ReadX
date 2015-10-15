@@ -1,5 +1,7 @@
 @import "iconfont";
 
+$dark-green: #59E453;
+
 body {
   width: 350px;
   height: 505px;
@@ -11,6 +13,10 @@ body {
 
 .list-block {
   margin: 0;
+  
+  .layout-dark & {
+    color: $dark-green;
+  }
 
   ul {
     background-color: #EFEFF4;
@@ -25,6 +31,10 @@ body {
   float: left;
   width: 40px;
   border-right: 1px solid #b2b2b2;
+  
+  .layout-dark &{
+    border-color: $dark-green;
+  }
 }
 
 .view-main {
@@ -35,20 +45,24 @@ body {
     font-weight: 200;
     font-size: 28px;
     color: #BFB4B4;
+    
+    .layout-dark & {
+      color: #5F705F;
+    }
   }
   
   .card-content img {
     -webkit-filter: grayscale(1);
     filter: grayscale(1); 
-    -webkit-transition: .5s ease-in-out;
-    transition: .5s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
     
     &:hover {
       -webkit-filter: grayscale(0);
       filter: grayscale(0);   
       // -webkit-transition : -webkit-filter 500ms linear;
-      -webkit-transition: .5s ease-in-out;          
-      transition: .5s ease-in-out;          
+      -webkit-transition: .3s ease-in-out;          
+      transition: .3s ease-in-out;          
     }
   }
 
@@ -57,11 +71,14 @@ body {
   }
 
   li.card{
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
     -webkit-transition: .3s ease-in-out;          
     transition: .3s ease-in-out;
+    
+    a {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
 
     &:visited {
       color: #5F5F5F;
@@ -69,7 +86,7 @@ body {
     }
     
     &:hover {
-      box-shadow: -1px 10px 40px rgba(177, 177, 177, 0.38), 1px 10px 40px #4E4C4C;
+      // box-shadow: -1px 10px 40px rgba(177, 177, 177, 0.38), 1px 10px 40px #4E4C4C;
       transform: rotateZ(0deg);
       -webkit-transition: .3s ease-in-out;          
       transition: .3s ease-in-out;
@@ -84,12 +101,11 @@ body {
     width: 30px;
     height: 30px;
   }
-
 }
 
 .left-nav {
   width: 40px;
-  background: #f1f1f1;
+  // background: #f1f1f1;
   max-height: 466px;
   display: block;
   overflow-y: scroll;
@@ -100,7 +116,6 @@ body {
 
   li {
     padding: 4px 2px;
-    background: #f1f1f1;
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
 
@@ -115,6 +130,12 @@ body {
       opacity: 1;
       -webkit-filter: grayscale(0%);
       filter: grayscale(0%);
+      
+      .layout-dark &{
+        background-color: #04510D!important;
+        border-top: 1px solid #04510D;
+        border-bottom: 1px solid #04510D;
+      }
     }
 
     img {
@@ -122,9 +143,19 @@ body {
       border-radius: 50%;
       width: 34px;
       height: 34px;
+      
+      .layout-dark &{
+        -webkit-filter: invert(1);
+        filter: invert(1);
+      }
 
       &.active {
         box-shadow: 10px 10px 20px #67BE3E, 1px 10px 20px #C8C8C8;
+        
+        .layout-dark &{
+          .webkit-filter: invert(0);
+          filter: invert(0);
+        }
       }
     }
 
@@ -221,4 +252,8 @@ body {
 .rotate-right {
   -webkit-transform: rotateX(14deg);
   transform: rotate(14deg);  
+}
+
+.layout-dark i.icon.icon-bars {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2021%2014'%3E%3Cpath%20fill%3D'%2359E453'%20d%3D'M0%2C0h2v2H0V0z%20M4%2C0h17v1H4V0z%20M0%2C6h2v2H0V6z%20M4%2C6h17v1H4V6z%20M0%2C12h2v2H0V12z%20M4%2C12h17v1H4V12z'%2F%3E%3C%2Fsvg%3E");
 }
