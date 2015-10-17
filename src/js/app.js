@@ -142,7 +142,8 @@ Template7.data['page:popup'] = function(page) {
             $(".left-nav").append(imgNode);
         }
     };
-
+    
+    // TODO: 缓存导航
     if (navInit) {
         console.log(imgNode);
         console.log(navInit);
@@ -151,6 +152,18 @@ Template7.data['page:popup'] = function(page) {
         createLeftNav();
         // myApp.alert("nav");
     }
+    
+    // 最简单数组去重法
+    function unique(array){
+      var n = []; //一个新的临时数组
+      //遍历当前数组
+      for(var i = 0; i < array.length; i++){
+        //如果当前数组的第i已经保存进了临时数组，那么跳过，
+        //否则把当前项push到临时数组里面
+        if (n.indexOf(array[i]) == -1) n.push(array[i]);
+      }
+      return n;
+    } 
 
     popup.show = function(index) {
         popup.index = index;
@@ -163,8 +176,8 @@ Template7.data['page:popup'] = function(page) {
         // console.log(site.name);
         $('.view-main .sliding').text(site.name);
         console.log('show');
-        if (site.name.indexOf("知乎") !== -1){
-            times = 8; 
+        if (site.name.indexOf("最新回答") !== -1){
+            times = 5; 
         }
         $.ajax({
             type: 'get',
@@ -174,14 +187,18 @@ Template7.data['page:popup'] = function(page) {
                 // 找到选择器节点，输出链接和标题
                 var parsedData = $(data).find(site.selector);
                 var mediaData = $(data).find(site.media) || {};
+                console.log("A: " + parsedData.length);
+                unique(parsedData);
+                console.log("B: " + parsedData.length);
 
                 for (var i = 0; i < times; i++) {
+                    // console.log("ajax: " + i + parsedData);
                     var article = {
                         title: $.trim($(parsedData[i]).text()),
                         href: $(parsedData[i]).attr("href"),
                         media: $(mediaData[i]).attr("src") || ""
-                    };
-                    console.log("debug: " + article.href);
+                    };                    
+                    // console.log("debug: " + article.href);
                     if (article.href.indexOf("http") == -1) {
                         var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
                         if (article.href[0] != "/") {
@@ -200,7 +217,7 @@ Template7.data['page:popup'] = function(page) {
                         article.title = $.trim($($(data).find(site.selector)[i]).parent().text())
                     }
                                         
-                    // console.log(article.media);
+                    // console.log(data);
                     collections.push(article);
                 };
 
@@ -209,11 +226,11 @@ Template7.data['page:popup'] = function(page) {
                     $("img.item-media").hide();
                     console.log("hide");
                 }
-                if (article.href.indexOf("zhihu") !== -1) {
+                if (site.name.indexOf("最新回答") !== -1) {
                     $('li.card a').css({
                         'white-space': 'normal'
                     });
-                }
+                }       
 
             }
         });

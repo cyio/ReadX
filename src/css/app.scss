@@ -119,6 +119,7 @@ body {
     padding: 4px 2px;
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
+    margin-bottom: 5px;
 
     :hover {
       cursor: pointer;
@@ -265,4 +266,6 @@ body {
 
 .list-block .item-content {
   padding-left: 0px; 
+  height: 34px;
+  min-height: 34px;
 }    
