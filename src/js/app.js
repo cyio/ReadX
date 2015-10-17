@@ -1,6 +1,8 @@
 // Initialize your app
 var myApp = new Framework7({
-    smartSelectInPopup:true
+    modalTitle:'',
+    modalButtonOk: '确定',
+    modalButtonCancel: "取消"
 });
 
 // Export selectors engine
@@ -19,6 +21,8 @@ var mainView = myApp.addView('.view-main', {
 // 必须手动路由加载
 mainView.router.loadPage('popup.html');
 
+var imgNode;
+var navInit = false;
 Template7.data['page:popup'] = function(page) {
     var popup = {};
     popup.initSites = [{
@@ -129,16 +133,24 @@ Template7.data['page:popup'] = function(page) {
     // TODO: 处理外部数据
     popup.sites = popup.initSites;
 
-    // 根据init json添加导航
+    // 根据init json添加导航    
     function createLeftNav(data) {
+        navInit = true;
         for (var i = 0; i < popup.sites.length; i++) {
-            var string = '<li><img src=' + popup.sites[i].icon + ' title=' + popup.sites[i].name + ' data-id=' + i + '></li>';
-            var imgNode = $('<div/>').html(string).contents();
+            var string = '<li><div class="item-content"><div class="item-media"><img src=' + popup.sites[i].icon + ' title=' + popup.sites[i].name + ' data-id=' + i + '></div></div><div class="sortable-handler"></div></li>'
+            imgNode = $('<div/>').html(string).contents();
             $(".left-nav").append(imgNode);
         }
     };
 
-    createLeftNav();
+    if (navInit) {
+        console.log(imgNode);
+        console.log(navInit);
+        $(".left-nav").append(imgNode);
+    } else {
+        createLeftNav();
+        // myApp.alert("nav");
+    }
 
     popup.show = function(index) {
         popup.index = index;
@@ -148,7 +160,7 @@ Template7.data['page:popup'] = function(page) {
         var times = 10;
         $('.view-main ul').html('');
         $('.view-main ul .preloader').show('fast');
-        console.log(site.name);
+        // console.log(site.name);
         $('.view-main .sliding').text(site.name);
         console.log('show');
         if (site.name.indexOf("知乎") !== -1){
@@ -169,7 +181,7 @@ Template7.data['page:popup'] = function(page) {
                         href: $(parsedData[i]).attr("href"),
                         media: $(mediaData[i]).attr("src") || ""
                     };
-                    console.log(article.title);
+                    console.log("debug: " + article.href);
                     if (article.href.indexOf("http") == -1) {
                         var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
                         if (article.href[0] != "/") {
@@ -187,7 +199,7 @@ Template7.data['page:popup'] = function(page) {
                     if (article.href.indexOf("zhihu") !== -1) {
                         article.title = $.trim($($(data).find(site.selector)[i]).parent().text())
                     }
-                    
+                                        
                     // console.log(article.media);
                     collections.push(article);
                 };
@@ -229,12 +241,12 @@ Template7.data['page:popup'] = function(page) {
     $('body').on('click', '.left-nav li', function(e) {
         $('.left-nav li').removeClass('active');
         $(this).addClass('active');
-        var id = $(this).children('img').attr('data-id');
+        var id = $(this).find('img').attr('data-id');
         var ul = $('.view-main ul');
         popup.show(id);
     });
 
-    $('body').on('click', 'a.item-link', function(e) {
+    $('body').on('click', '.card a.item-link', function(e) {
         e.preventDefault();
         chrome.tabs.create({
             url: $(this).attr("href"),
@@ -259,4 +271,3 @@ function rotate (direction) {
     console.log(dire);
     $('.list-block ul li').addClass(dire);
 }
-

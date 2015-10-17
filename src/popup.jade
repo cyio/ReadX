@@ -10,7 +10,7 @@ head
   link(rel='stylesheet', href='/css/framework7.ios.css')
   link(rel='stylesheet', href='/css/framework7.ios.colors.css')
   link(rel='stylesheet', href='/css/app.css')
-body.layout-dark    
+//- body.layout-dark    
 // Status bar overlay for fullscreen mode
 .statusbar-overlay
 // Panels overlay
@@ -26,6 +26,20 @@ body.layout-dark
             .item-title 项目说明
             .item-media
               i.iconfont.icon-qmark
+    .list-block
+      ul
+        // Single radio input
+        li
+          label.label-radio.item-content
+            // Checked by default
+            input(type='radio', name='my-radio', value='Books', checked='checked')
+            .item-inner
+              .item-title Books          
+        li
+          label.label-radio.item-content
+            input(type='radio', name='my-radio', value='Books')
+            .item-inner
+              .item-title Movies
     .commend-badge
       i.iconfont.icon-commend
       span 推荐
@@ -40,7 +54,9 @@ body.layout-dark
     //    .center.sliding Left View
     .pages
       .page(data-page='popup-left').left
-        ul.left-nav
+        .list-block.sortable
+          ul.left-nav
+        <a href="#" data-sortable=".sortable" class="toggle-sortable">Toggle sortable</a>
     //   //left for nav
   // Right view, it is main view
   .view.view-main.navbar-through

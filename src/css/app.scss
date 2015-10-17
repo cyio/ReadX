@@ -1,4 +1,4 @@
-// @import "iconfont";
+@import "iconfont";
 
 $dark-green: #59E453;
 $dark-green-border: #254D23;
@@ -105,7 +105,7 @@ body {
 }
 
 .left-nav {
-  width: 40px;
+  // width: 40px;
   // background: #f1f1f1;
   max-height: 466px;
   display: block;
@@ -262,3 +262,7 @@ body {
 .layout-dark .navbar:after, .navbar.layout-dark:after, .layout-dark .subnavbar:after, .subnavbar.layout-dark:after {
     background-color: $dark-green-border;
 }
+
+.list-block .item-content {
+  padding-left: 0px; 
+}    
