@@ -21,8 +21,6 @@ var mainView = myApp.addView('.view-main', {
 // 必须手动路由加载
 mainView.router.loadPage('popup.html');
 
-var imgNode;
-var navInit = false;
 Template7.data['page:popup'] = function(page) {
     var popup = {};
     popup.initSites = [{
@@ -135,38 +133,34 @@ Template7.data['page:popup'] = function(page) {
 
     // 根据init json添加导航    
     function createLeftNav(data) {
-        navInit = true;
+        
         for (var i = 0; i < popup.sites.length; i++) {
             var string = '<li><div class="item-content"><div class="item-media"><img src=' + popup.sites[i].icon + ' title=' + popup.sites[i].name + ' data-id=' + i + '></div></div><div class="sortable-handler"></div></li>'
-            imgNode = $('<div/>').html(string).contents();
-            $(".left-nav").append(imgNode);
+            var navNode = $('<div/>').html(string).contents();
+            // console.log(navNode);
+            $(".left-nav").append(navNode);
         }
+        
+        localStorage.setItem('nav', $(".left-nav").html());
     };
     
-    // TODO: 缓存导航
-    if (navInit) {
-        console.log(imgNode);
-        console.log(navInit);
-        $(".left-nav").append(imgNode);
+    var navList = localStorage.getItem('nav');
+    if (navNode) {
+        $(".left-nav").append(navList);
     } else {
         createLeftNav();
-        // myApp.alert("nav");
     }
     
-    // 最简单数组去重法
     function unique(array){
-      var n = []; //一个新的临时数组
+      var n = [];
       var m = [];
-      //遍历当前数组
       for(var i = 0; i < array.length; i++){
-        //如果当前数组的第i已经保存进了临时数组，那么跳过，
-        //否则把当前项push到临时数组里面
         var title = $.trim($(array[i]).text());
         
-        console.log(m.indexOf(title) == -1);
         if (m.indexOf(title) == -1) {
             m.push(title);
             n.push(array[i]);
+            // console.log(m);
         };
       }
       return n;
@@ -193,13 +187,13 @@ Template7.data['page:popup'] = function(page) {
                 var parsedData = $(data).find(site.selector);
                 var mediaData = $(data).find(site.media) || {};
                 console.log("A: " + parsedData.length);
-                console.log("B: " + parsedData.length);
                 if (site.name.indexOf("最新回答") !== -1){
                     times = 5; 
                 } else {
                     parsedData = unique(parsedData);
                 }
-                console.log(parsedData);
+                // console.log("B: " + parsedData.length);            
+                // console.log(parsedData);
 
                 for (var i = 0; i < times; i++) {
                     // console.log("ajax: " + i + parsedData);
@@ -224,7 +218,7 @@ Template7.data['page:popup'] = function(page) {
                         // console.log(article.title);
                     }
                     if (article.href.indexOf("zhihu") !== -1) {
-                        article.title = $.trim($($(data).find(site.selector)[i]).parent().text())
+                        article.title = $.trim($(parsedData[i]).parent().text())
                     }
                                         
                     // console.log(data);
@@ -259,9 +253,7 @@ Template7.data['page:popup'] = function(page) {
         };
 
     };
-    // 默认载入
-    console.log(popup.sites[2].selector.href);
-    
+    // 默认载入    
     popup.show(0);        
     $('.left-nav li').eq(0).addClass('active');    
 
