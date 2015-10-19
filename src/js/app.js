@@ -156,11 +156,18 @@ Template7.data['page:popup'] = function(page) {
     // 最简单数组去重法
     function unique(array){
       var n = []; //一个新的临时数组
+      var m = [];
       //遍历当前数组
       for(var i = 0; i < array.length; i++){
         //如果当前数组的第i已经保存进了临时数组，那么跳过，
         //否则把当前项push到临时数组里面
-        if (n.indexOf(array[i]) == -1) n.push(array[i]);
+        var title = $.trim($(array[i]).text());
+        
+        console.log(m.indexOf(title) == -1);
+        if (m.indexOf(title) == -1) {
+            m.push(title);
+            n.push(array[i]);
+        };
       }
       return n;
     } 
@@ -176,9 +183,7 @@ Template7.data['page:popup'] = function(page) {
         // console.log(site.name);
         $('.view-main .sliding').text(site.name);
         console.log('show');
-        if (site.name.indexOf("最新回答") !== -1){
-            times = 5; 
-        }
+
         $.ajax({
             type: 'get',
             url: site.url,
@@ -188,8 +193,13 @@ Template7.data['page:popup'] = function(page) {
                 var parsedData = $(data).find(site.selector);
                 var mediaData = $(data).find(site.media) || {};
                 console.log("A: " + parsedData.length);
-                unique(parsedData);
                 console.log("B: " + parsedData.length);
+                if (site.name.indexOf("最新回答") !== -1){
+                    times = 5; 
+                } else {
+                    parsedData = unique(parsedData);
+                }
+                console.log(parsedData);
 
                 for (var i = 0; i < times; i++) {
                     // console.log("ajax: " + i + parsedData);
