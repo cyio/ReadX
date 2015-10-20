@@ -11,6 +11,8 @@ var widenScreenHandler;
 var listItemHandler;
 var listItems;
 
+// $('body').append($('.operation-over .gotop'));
+
 // Add views
 var leftView = myApp.addView('.view-left', {
     // Because we use fixed-through navbar we can enable dynamic navbar
@@ -288,7 +290,6 @@ Template7.data['page:popup'] = function(page) {
                 ul.append(li);
                 // li.appendTo(ul).show('slow');
             }
-            // $$('.view-main .page-content').show(2000);
             $('.view-main ul .preloader').hide();
             // rotate('left');
         };
@@ -323,7 +324,8 @@ Template7.data['page:popup'] = function(page) {
     $('body').on('click', '.card a.item-link',  listItemHandler);
     
     $(".view-main .page-content").on("scroll", function(){
-        $(this).scrollTop() >= 100 ? $(".view-main .navbar").hide(2000) : $(".view-main .navbar").show(2000);
+        $(this).scrollTop() >= 100 ? $(".view-main .navbar").hide(): $(".view-main .navbar").show(); 
+        $(this).scrollTop() >= 200 ? $('.gotop').show(): $('.gotop').hide();        
     });
 };
 
@@ -358,3 +360,7 @@ widenScreenHandler = function(){
     // $(".view-left").hide();
 };
 $(".wide-screen").on('click', widenScreenHandler);
+
+$('body').on('touchstart click','.gotop',function () {
+    $('.view-main .page-content').scrollTop(0,800);
+});

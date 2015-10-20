@@ -300,3 +300,25 @@ iframe {
 .w-800 {
   width: 800px;
 }
+
+i.gotop{
+  position: fixed;
+  bottom: 160px;
+  right: 10px;
+  font-size: 32px;
+  z-index: 10;
+  display: none;
+  color:#3F90C9;
+  background-image: url("../icon/btn_go_top.png");
+  background-repeat: no-repeat;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+    transition: opacity .3s;
+  }
+}
