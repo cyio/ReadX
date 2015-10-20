@@ -74,6 +74,7 @@ body {
   li.card{
     -webkit-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
+    max-height: 439px;
 
     a {
       white-space: nowrap;
@@ -92,6 +93,10 @@ body {
       -webkit-transition: .3s ease-in-out;
       transition: .3s ease-in-out;
       z-index: 10;
+    }
+    
+    img {
+      max-height: 390px;
     }
   }
 

@@ -168,7 +168,6 @@ Template7.data['page:popup'] = function(page) {
 
     var navList = localStorage.getItem('nav');
     if (navList) {
-        // console.log(navList);
         $(".left-nav").append(navList);
         var dataID = $(".left-nav img").attr("data-id");
         localStorage.setItem('dataID', dataID);
@@ -294,11 +293,14 @@ Template7.data['page:popup'] = function(page) {
 
     };
     // 默认载入
-    var dataID = localStorage.getItem('dataID');
-    console.log("ID" + dataID);
-    popup.show(dataID);
-    $('.left-nav li').eq(dataID).addClass('active');
-
+    var listInit = function(){
+        if($('.view-main ul li').length > 3) return;
+        var dataID = localStorage.getItem('dataID');
+        console.log("ID" + dataID);
+        popup.show(dataID);
+        $('.left-nav li').eq(dataID).addClass('active');
+    }();
+    
     $('body').on('click', '.left-nav li', function(e) {
         $('.left-nav li').removeClass('active');
         $(this).addClass('active');
