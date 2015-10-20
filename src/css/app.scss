@@ -277,3 +277,21 @@ iframe {
   width: 100%;
   border-left: none;
 }
+
+.toggle-sortable img {
+  display: block;
+  width: 34px;
+  height: 34px;
+  padding-left: 2px;  
+  padding-top: 2px;
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
+
+.list-block .sortable-handler {
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2018%2012'%20fill%3D'%23007aff'%3E%3Cpath%20d%3D'M0%2C2V0h22v2H0z'%2F%3E%3Cpath%20d%3D'M0%2C7V5h22v2H0z'%2F%3E%3Cpath%20d%3D'M0%2C12v-2h22v2H0z'%2F%3E%3C%2Fsvg%3E");
+}
+
+.w-800 {
+  width: 800px;
+}
