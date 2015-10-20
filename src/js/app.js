@@ -1,17 +1,11 @@
 // Initialize your app
-var myApp = new Framework7({
-    modalTitle:'',
-    modalButtonOk: '确定',
-    modalButtonCancel: "取消"
-});
+var myApp = new Framework7({});
 
 // Export selectors engine
 var $$ = Dom7;
 var widenScreenHandler;
 var listItemHandler;
 var listItems;
-
-// $('body').append($('.operation-over .gotop'));
 
 // Add views
 var leftView = myApp.addView('.view-left', {
@@ -155,9 +149,7 @@ Template7.data['page:popup'] = function(page) {
     // TODO: 处理外部数据
     popup.sites = popup.initSites;
 
-    // 根据init json添加导航
     function createLeftNav(data) {
-
         for (var i = 0; i < popup.sites.length; i++) {
             var string = '<li><div class="item-content"><div class="item-media"><img src=' + popup.sites[i].icon + ' title=' + popup.sites[i].name + ' data-id=' + i + '></div></div><div class="sortable-handler"></div></li>'
             var navNode = $('<div/>').html(string).contents();
@@ -169,6 +161,8 @@ Template7.data['page:popup'] = function(page) {
     };
 
     var navList = localStorage.getItem('nav');
+    
+    // 导航：非首次运行时，从缓存中加载
     if (navList) {
         if ($(".left-nav li").length > 3) return;
         $(".left-nav").append(navList);
@@ -177,7 +171,8 @@ Template7.data['page:popup'] = function(page) {
     } else {
         createLeftNav();
     }
-
+    
+    // 导航：支持并记忆用户手动排序
     $$('.toggle-sortable').on('click', function () {
       if ($$('.toggle-sortable').attr("open") == "true") {
         localStorage.setItem('nav', $(".left-nav").html());
@@ -212,7 +207,7 @@ Template7.data['page:popup'] = function(page) {
         var collections = [];
         var times = 10;
         $('.view-main ul').html('');
-        $('.view-main ul .preloader').show('fast');
+        $('.view-main ul .preloader').show();
         // console.log(site.name);
         $('.view-main .sliding').text(site.name);
         console.log('show');
@@ -222,15 +217,17 @@ Template7.data['page:popup'] = function(page) {
             url: site.url,
             timeout: 10000,
             success: function(data) {
-                // 找到选择器节点，输出链接和标题
+                // 找到选择器节点，输出链接和标题等
                 var parsedData = $(data).find(site.selector);
                 console.log(parsedData);
                 var mediaData = $(data).find(site.media) || {};
+                
+                // 去除知乎问题中的重复项，并对个别订阅源作条目限制
                 if (site.name.indexOf("最新回答") !== -1){
                     times = 5;
                 } else if(site.name.indexOf("ONE") !== -1) {
                     times = 9;
-                } else {
+                } else if (site.name.indexOf("最新问题") !== -1){
                     parsedData = unique(parsedData);
                 }
 
@@ -241,7 +238,6 @@ Template7.data['page:popup'] = function(page) {
                         href: $(parsedData[i]).attr("href"),
                         media: $(mediaData[i]).attr("src") || ""
                     };
-                    // console.log(article.href);
                     // console.log("debug: " + article.href);
                     if (article.href.indexOf("http") == -1) {
                         var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
@@ -249,10 +245,10 @@ Template7.data['page:popup'] = function(page) {
                             baseUrl += "/"
                         }
                         article.href = baseUrl + article.href;
-                        // article.media = baseUrl + article.media;
                         article.media = baseUrl + article.media;
-                        // console.log(article.media);
                     };
+                    
+                    // 部分订阅源需要单独指定文章标题
                     if (article.href.indexOf("qdaily") !== -1) {
                         article.title = $.trim($($(data).find(site.title)[i]).text())
                     }
@@ -268,9 +264,9 @@ Template7.data['page:popup'] = function(page) {
                 };
 
                 createMainList(collections);
+                
                 if (!site.media) {
                     $("img.item-media").hide();
-                    console.log("hide");
                 }
                 if (site.name.indexOf("最新回答") !== -1 || site.name.indexOf("ONE - 图片") !== -1) {
                     $('li.card a').css({
@@ -295,7 +291,8 @@ Template7.data['page:popup'] = function(page) {
         };
 
     };
-    // 默认载入
+    
+    // 打开应用时，加载第一个订阅源
     var listInit = function(){
         if($('.view-main ul li').length > 3) return;
         var dataID = localStorage.getItem('dataID');
@@ -312,6 +309,7 @@ Template7.data['page:popup'] = function(page) {
         popup.show(id);
     });
 
+    // 设定后台打开链接
     // 必须委托绑定，否则 chrome.tabs 设定会失效
     $('body').off('click', '.card a.item-link',  listItemHandler);
     listItemHandler = function(e) {
@@ -323,6 +321,7 @@ Template7.data['page:popup'] = function(page) {
     };
     $('body').on('click', '.card a.item-link',  listItemHandler);
     
+    // 滚动时，隐藏上方navbar，并显示gotop按钮
     $(".view-main .page-content").on("scroll", function(){
         $(this).scrollTop() >= 100 ? $(".view-main .navbar").hide(): $(".view-main .navbar").show(); 
         $(this).scrollTop() >= 200 ? $('.gotop').show(): $('.gotop').hide();        
