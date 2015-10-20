@@ -23,7 +23,26 @@ mainView.router.loadPage('popup.html');
 
 Template7.data['page:popup'] = function(page) {
     var popup = {};
-    popup.initSites = [{
+    popup.initSites = [ {
+        "name": "ONE - 问答",
+        "icon": "http://s2-cdn.wufazhuce.com/m.wufazhuce/images/favicon.ico",
+        "url": "http://m.wufazhuce.com/question",
+        "selector": "a.div-link",
+        "title": ".text-title"
+    }, {
+        "name": "ONE - 阅读",
+        "icon": "http://s2-cdn.wufazhuce.com/m.wufazhuce/images/favicon.ico",
+        "url": "http://m.wufazhuce.com/article",
+        "selector": "a.div-link",
+        "title": ".text-title"
+    },{
+        "name": "ONE - 图片",
+        "icon": "http://s2-cdn.wufazhuce.com/m.wufazhuce/images/favicon.ico",
+        "url": "http://m.wufazhuce.com/one",
+        "selector": "a.div-link",
+        "media": ".item-picture-img",
+        "title": ".text-content-short"
+    },{
         "name": "知乎 - 最新问题",
         "icon": "http://static.zhihu.com/static/favicon.ico",
         "url": "http://www.zhihu.com/",
@@ -145,11 +164,22 @@ Template7.data['page:popup'] = function(page) {
     };
     
     var navList = localStorage.getItem('nav');
-    if (navNode) {
+    if (navList) {
         $(".left-nav").append(navList);
     } else {
         createLeftNav();
     }
+    
+    $$('.toggle-sortable').on('click', function () {
+      if ($$('.toggle-sortable').attr("open") == "true") {
+        localStorage.setItem('nav', $(".left-nav").html());
+        var navList = localStorage.getItem('nav');
+        console.log(navList);
+        $$('.toggle-sortable').attr("open", false)
+      } else {
+        $$('.toggle-sortable').attr('open', true);                
+      }
+    });
     
     function unique(array){
       var n = [];
@@ -185,15 +215,15 @@ Template7.data['page:popup'] = function(page) {
             success: function(data) {
                 // 找到选择器节点，输出链接和标题
                 var parsedData = $(data).find(site.selector);
+                console.log(parsedData);
                 var mediaData = $(data).find(site.media) || {};
-                console.log("A: " + parsedData.length);
                 if (site.name.indexOf("最新回答") !== -1){
                     times = 5; 
+                } else if(site.name.indexOf("ONE") !== -1) {
+                    times = 9;
                 } else {
                     parsedData = unique(parsedData);
                 }
-                // console.log("B: " + parsedData.length);            
-                // console.log(parsedData);
 
                 for (var i = 0; i < times; i++) {
                     // console.log("ajax: " + i + parsedData);
@@ -201,7 +231,8 @@ Template7.data['page:popup'] = function(page) {
                         title: $.trim($(parsedData[i]).text()),
                         href: $(parsedData[i]).attr("href"),
                         media: $(mediaData[i]).attr("src") || ""
-                    };                    
+                    };
+                    console.log(article.href);                    
                     // console.log("debug: " + article.href);
                     if (article.href.indexOf("http") == -1) {
                         var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
@@ -215,7 +246,9 @@ Template7.data['page:popup'] = function(page) {
                     };
                     if (article.href.indexOf("qdaily") !== -1) {
                         article.title = $.trim($($(data).find(site.title)[i]).text())
-                        // console.log(article.title);
+                    }
+                    if (article.href.indexOf("wufazhuce") !== -1) {
+                        article.title = $.trim($($(data).find(site.title)[i]).text())
                     }
                     if (article.href.indexOf("zhihu") !== -1) {
                         article.title = $.trim($(parsedData[i]).parent().text())
@@ -230,7 +263,7 @@ Template7.data['page:popup'] = function(page) {
                     $("img.item-media").hide();
                     console.log("hide");
                 }
-                if (site.name.indexOf("最新回答") !== -1) {
+                if (site.name.indexOf("最新回答") !== -1 || site.name.indexOf("ONE - 图片") !== -1) {
                     $('li.card a').css({
                         'white-space': 'normal'
                     });
