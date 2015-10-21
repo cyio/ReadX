@@ -322,9 +322,9 @@ Template7.data['page:popup'] = function(page) {
     $('body').on('click', '.card a.item-link',  listItemHandler);
     
     // 滚动时，隐藏上方navbar，并显示gotop按钮
-    $(".view-main .page-content").on("scroll", function(){
-        $(this).scrollTop() >= 100 ? $(".view-main .navbar").hide(): $(".view-main .navbar").show(); 
-        $(this).scrollTop() >= 200 ? $('.gotop').show(): $('.gotop').hide();        
+    $(".view-main .page-content").on("scroll", function(e){
+        $(this).scrollTop() >= 100 ? $$(".view-main .navbar").hide(800): $$(".view-main .navbar").show(800); 
+        $(this).scrollTop() >= 200 ? $$('.gotop').show(400): $$('.gotop').hide(400);        
     });
 };
 
@@ -361,5 +361,5 @@ widenScreenHandler = function(){
 $(".wide-screen").on('click', widenScreenHandler);
 
 $('body').on('touchstart click','.gotop',function () {
-    $('.view-main .page-content').scrollTop(0,800);
+    $$('.view-main .page-content').scrollTop(0,800);
 });
