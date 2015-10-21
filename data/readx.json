@@ -1,0 +1,66 @@
+{
+    "name": "ONE - 问答",
+    "icon": "http://s2-cdn.wufazhuce.com/m.wufazhuce/images/favicon.ico",
+    "url": "http://m.wufazhuce.com/question",
+    "selector": "a.div-link",
+    "title": ".text-title"
+}, {
+    "name": "ONE - 阅读",
+    "icon": "http://s2-cdn.wufazhuce.com/m.wufazhuce/images/favicon.ico",
+    "url": "http://m.wufazhuce.com/article",
+    "selector": "a.div-link",
+    "title": ".text-title"
+}, {
+    "name": "ONE - 图片",
+    "icon": "http://s2-cdn.wufazhuce.com/m.wufazhuce/images/favicon.ico",
+    "url": "http://m.wufazhuce.com/one",
+    "selector": "a.div-link",
+    "media": ".item-picture-img",
+    "title": ".text-content-short"
+}, {
+    "name": "湾区日报",
+    "icon": "http://wanqu.co/static/images/wanqu/favicons/favicon-32x32.png",
+    "url": "http://wanqu.co/issues/",
+    "selector": "li.list-group-item>a",
+    "isShow": true
+}, {
+    "name": "最新美剧",
+    "icon": "http://cili003.com/favicon.ico",
+    "url": "http://cili003.com/",
+    "selector": ".w > .list-item > dd > .b > a",
+    "isShow": true
+}, {
+    "name": "Linux - Reddit",
+    "icon": "http://ww3.sinaimg.cn/large/4e5d3ea7gw1ety7g00n3nj204g056wef.jpg",
+    "url": "http://www.reddit.com/r/linux",
+    "selector": "#siteTable .title.may-blank",
+    "isShow": true
+}, {
+    "name": "JavaScript - Reddit",
+    "icon": "http://ww3.sinaimg.cn/large/4e5d3ea7gw1ety7eqg2rqj204g04ggli.jpg",
+    "url": "http://www.reddit.com/r/javascript",
+    "selector": "#siteTable .title.may-blank",
+    "isShow": true
+}, {
+    "name": "精选 - 传送门",
+    "icon": "http://chuansong.me/favicon.ico",
+    "url": "http://chuansong.me/select",
+    "selector": "a.question_link",
+    "isShow": true
+}, {
+    "name": "Solidot",
+    "icon": "http://www.solidot.org/favicon.ico",
+    "url": "http://www.solidot.org/",
+    "selector": ".bg_htit>h2>a",
+    "isShow": true
+}, {
+    "name": "PingWest快讯",
+    "icon": "http://www.pingwest.com/wp-content/themes/pingwest2014/images/touch-icon.png",
+    "url": "http://news.pingwest.com/",
+    "selector": ".demo-wall ul a"
+}, {
+    "name": "极客公园",
+    "icon": "http://www.geekpark.net/icons/72x72.png",
+    "url": "http://www.geekpark.net/collections/%E7%BC%96%E8%BE%91%E7%B2%BE%E9%80%89",
+    "selector": ".title"
+}

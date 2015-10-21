@@ -4,12 +4,16 @@ Inspired by [十阅 wtser/tenread](https://github.com/wtser/tenread/)
 
 [Chrome扩展下载](https://github.com/cyio/ReadX/raw/master/ReadX.crx)，需手动安装。
 
-> 我只是想了解下外面的世界 
-> 却要花很多时间切换网站 
-> 忍受网站的难用和大量干扰 
-> 越来越多的软文、二逼帖子 
-> 肉眼过滤，已力不从心 
-> ReadX，让你翻身做主人 
+我只是想了解下外面的世界， 
+却要花很多时间切换网站， 
+忍受网站的难用和大量干扰， 
+越来越多的软文、二逼帖子， 
+肉眼过滤，已力不从心， 
+ReadX，让你翻身做主人。
+
+特性：
+1. 支持V2EX、简书、HackerNews等主流订阅源，
+2. 单个订阅源最多显示10条
 
 ![](http://ww3.sinaimg.cn/bmiddle/4e5d3ea7jw1ex8pc04rq6j20gv0p5whz.jpg)
 

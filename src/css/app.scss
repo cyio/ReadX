@@ -82,7 +82,7 @@ body {
       overflow: hidden;
     }
 
-    &:visited {
+    a:visited{
       color: #5F5F5F;
       background-color: #EBEBEB;
     }
@@ -137,12 +137,13 @@ body {
       opacity: 1;
       -webkit-filter: grayscale(0%);
       filter: grayscale(0%);
-
-      .layout-dark &.active {
-        background-color: #04510D !important;
-        border-top: 1px solid #04510D;
-        border-bottom: 1px solid #04510D;
-      }
+    }
+    
+    
+    .layout-dark &.active {
+      background-color: #04510D !important;
+      border-top: 1px solid #04510D;
+      border-bottom: 1px solid #04510D;
     }
 
     img {

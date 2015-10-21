@@ -23,25 +23,6 @@ mainView.router.loadPage('popup.html');
 Template7.data['page:popup'] = function(page) {
     var popup = {};
     popup.initSites = [ {
-        "name": "ONE - 问答",
-        "icon": "http://s2-cdn.wufazhuce.com/m.wufazhuce/images/favicon.ico",
-        "url": "http://m.wufazhuce.com/question",
-        "selector": "a.div-link",
-        "title": ".text-title"
-    }, {
-        "name": "ONE - 阅读",
-        "icon": "http://s2-cdn.wufazhuce.com/m.wufazhuce/images/favicon.ico",
-        "url": "http://m.wufazhuce.com/article",
-        "selector": "a.div-link",
-        "title": ".text-title"
-    },{
-        "name": "ONE - 图片",
-        "icon": "http://s2-cdn.wufazhuce.com/m.wufazhuce/images/favicon.ico",
-        "url": "http://m.wufazhuce.com/one",
-        "selector": "a.div-link",
-        "media": ".item-picture-img",
-        "title": ".text-content-short"
-    },{
         "name": "知乎 - 最新问题",
         "icon": "http://static.zhihu.com/static/favicon.ico",
         "url": "http://www.zhihu.com/",
@@ -78,47 +59,11 @@ Template7.data['page:popup'] = function(page) {
         "icon": "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
         "selector": "h4>a",
         "isShow": false
-    }, {
-        "name": "Solidot",
-        "icon": "http://www.solidot.org/favicon.ico",
-        "url": "http://www.solidot.org/",
-        "selector": ".bg_htit>h2>a",
-        "isShow": true
-    }, {
+    },  {
         "name": "V2EX",
         "icon": "http://www.v2ex.com/static/img/icon_rayps_64.png",
         "url": "http://www.v2ex.com/?tab=hot",
         "selector": "span.item_title > a",
-        "isShow": true
-    }, {
-        "name": "湾区日报",
-        "icon": "http://wanqu.co/static/images/wanqu/favicons/favicon-32x32.png",
-        "url": "http://wanqu.co/issues/",
-        "selector": "li.list-group-item>a",
-        "isShow": true
-    }, {
-        "name": "最新美剧",
-        "icon": "http://cili003.com/favicon.ico",
-        "url": "http://cili003.com/",
-        "selector": ".w > .list-item > dd > .b > a",
-        "isShow": true
-    }, {
-        "name": "Linux - Reddit",
-        "icon": "http://ww3.sinaimg.cn/large/4e5d3ea7gw1ety7g00n3nj204g056wef.jpg",
-        "url": "http://www.reddit.com/r/linux",
-        "selector": "#siteTable .title.may-blank",
-        "isShow": true
-    }, {
-        "name": "JavaScript - Reddit",
-        "icon": "http://ww3.sinaimg.cn/large/4e5d3ea7gw1ety7eqg2rqj204g04ggli.jpg",
-        "url": "http://www.reddit.com/r/javascript",
-        "selector": "#siteTable .title.may-blank",
-        "isShow": true
-    }, {
-        "name": "精选 - 传送门",
-        "icon": "http://chuansong.me/favicon.ico",
-        "url": "http://chuansong.me/select",
-        "selector": "a.question_link",
         "isShow": true
     }, {
         "name": "果壳科学人",
@@ -130,17 +75,7 @@ Template7.data['page:popup'] = function(page) {
         "icon": "http://www.huxiu.com/favicon.ico",
         "url": "http://www.huxiu.com/focus",
         "selector": "h3>a"
-    }, {
-        "name": "PingWest快讯",
-        "icon": "http://www.pingwest.com/wp-content/themes/pingwest2014/images/touch-icon.png",
-        "url": "http://news.pingwest.com/",
-        "selector": ".demo-wall ul a"
-    }, {
-        "name": "极客公园",
-        "icon": "http://www.geekpark.net/icons/72x72.png",
-        "url": "http://www.geekpark.net/collections/%E7%BC%96%E8%BE%91%E7%B2%BE%E9%80%89",
-        "selector": ".title"
-    }, {
+    },  {
         "name": "前端开发 - 推酷",
         "icon": "http://www.tuicool.com/favicon.ico",
         "url": "http://www.tuicool.com/topics/11000079?st=0&lang=0",
@@ -161,17 +96,18 @@ Template7.data['page:popup'] = function(page) {
     };
 
     var navList = localStorage.getItem('nav');
-    
+
     // 导航：非首次运行时，从缓存中加载
     if (navList) {
         if ($(".left-nav li").length > 3) return;
         $(".left-nav").append(navList);
+        console.log($(".left-nav img"));
         var dataID = $(".left-nav img").attr("data-id");
         localStorage.setItem('dataID', dataID);
     } else {
         createLeftNav();
     }
-    
+
     // 导航：支持并记忆用户手动排序
     $$('.toggle-sortable').on('click', function () {
       if ($$('.toggle-sortable').attr("open") == "true") {
@@ -184,21 +120,6 @@ Template7.data['page:popup'] = function(page) {
         $$('.left-nav li').addClass('onsort');
       }
     });
-
-    function unique(array){
-      var n = [];
-      var m = [];
-      for(var i = 0; i < array.length; i++){
-        var title = $.trim($(array[i]).text());
-
-        if (m.indexOf(title) == -1) {
-            m.push(title);
-            n.push(array[i]);
-            // console.log(m);
-        };
-      }
-      return n;
-    }
 
     popup.show = function(index) {
         popup.index = index;
@@ -221,7 +142,7 @@ Template7.data['page:popup'] = function(page) {
                 var parsedData = $(data).find(site.selector);
                 console.log(parsedData);
                 var mediaData = $(data).find(site.media) || {};
-                
+
                 // 去除知乎问题中的重复项，并对个别订阅源作条目限制
                 if (site.name.indexOf("最新回答") !== -1){
                     times = 5;
@@ -247,7 +168,7 @@ Template7.data['page:popup'] = function(page) {
                         article.href = baseUrl + article.href;
                         article.media = baseUrl + article.media;
                     };
-                    
+
                     // 部分订阅源需要单独指定文章标题
                     if (article.href.indexOf("qdaily") !== -1) {
                         article.title = $.trim($($(data).find(site.title)[i]).text())
@@ -264,7 +185,7 @@ Template7.data['page:popup'] = function(page) {
                 };
 
                 createMainList(collections);
-                
+
                 if (!site.media) {
                     $("img.item-media").hide();
                 }
@@ -291,16 +212,16 @@ Template7.data['page:popup'] = function(page) {
         };
 
     };
-    
+
     // 打开应用时，加载第一个订阅源
     var listInit = function(){
         if($('.view-main ul li').length > 3) return;
-        var dataID = localStorage.getItem('dataID');
+        var dataID = localStorage.getItem('dataID') || "1";
         console.log("ID" + dataID);
         popup.show(dataID);
         $('.left-nav li').eq(dataID).addClass('active');
     }();
-    
+
     $('body').on('click', '.left-nav li', function(e) {
         $('.left-nav li').removeClass('active');
         $(this).addClass('active');
@@ -320,11 +241,11 @@ Template7.data['page:popup'] = function(page) {
         });
     };
     $('body').on('click', '.card a.item-link',  listItemHandler);
-    
+
     // 滚动时，隐藏上方navbar，并显示gotop按钮
     $(".view-main .page-content").on("scroll", function(e){
-        $(this).scrollTop() >= 100 ? $$(".view-main .navbar").hide(800): $$(".view-main .navbar").show(800); 
-        $(this).scrollTop() >= 200 ? $$('.gotop').show(400): $$('.gotop').hide(400);        
+        $(this).scrollTop() >= 100 ? $$(".view-main .navbar").hide(800): $$(".view-main .navbar").show(800);
+        $(this).scrollTop() >= 200 ? $$('.gotop').show(400): $$('.gotop').hide(400);
     });
 };
 
@@ -363,3 +284,19 @@ $(".wide-screen").on('click', widenScreenHandler);
 $('body').on('touchstart click','.gotop',function () {
     $$('.view-main .page-content').scrollTop(0,800);
 });
+
+
+function unique(array){
+    var n = [];
+    var m = [];
+    for(var i = 0; i < array.length; i++){
+        var title = $.trim($(array[i]).text());
+
+        if (m.indexOf(title) == -1) {
+            m.push(title);
+            n.push(array[i]);
+            // console.log(m);
+        };
+    }
+    return n;
+}
