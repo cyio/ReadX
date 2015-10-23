@@ -353,3 +353,14 @@ scrollbar-face-color: $foreground-color;
 .card img:hover {
     transform: translate3d(0px, -3px, 0px);
 }
+
+.add-site input[type="url"]{
+  height: 25px;
+  border-radius: 3px;
+}
+
+.add-site .item-submit {
+  width: 52px;
+  vertical-align: middle;
+  margin-top: 16px;
+}

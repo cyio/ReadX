@@ -7,6 +7,7 @@ var listItemHandler;
 var listItems;
 var isWideScreen;
 var isDark;
+var mySite;
 
 // Add views
 var leftView = myApp.addView('.view-left', {
@@ -23,7 +24,7 @@ mainView.router.loadPage('popup.html');
 
 Template7.data['page:popup'] = function(page) {
     var popup = {};
-    popup.initSites = [ {
+    popup.initSites = [{
         "name": "知乎 - 最新问题",
         "icon": "http://static.zhihu.com/static/favicon.ico",
         "url": "http://www.zhihu.com/",
@@ -60,7 +61,7 @@ Template7.data['page:popup'] = function(page) {
         "icon": "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
         "selector": "h4>a",
         "isShow": false
-    },  {
+    }, {
         "name": "V2EX",
         "icon": "http://www.v2ex.com/static/img/icon_rayps_64.png",
         "url": "http://www.v2ex.com/?tab=hot",
@@ -76,7 +77,7 @@ Template7.data['page:popup'] = function(page) {
         "icon": "http://www.huxiu.com/favicon.ico",
         "url": "http://www.huxiu.com/focus",
         "selector": "h3>a"
-    },  {
+    }, {
         "name": "前端开发 - 推酷",
         "icon": "http://www.tuicool.com/favicon.ico",
         "url": "http://www.tuicool.com/topics/11000079?st=0&lang=0",
@@ -110,7 +111,7 @@ Template7.data['page:popup'] = function(page) {
     }
 
     // 导航：支持并记忆用户手动排序
-    $$('.toggle-sortable').on('click', function () {
+    $$('.toggle-sortable').on('click', function() {
         if ($$('.toggle-sortable').attr("open") == "true") {
             localStorage.setItem('nav', $(".left-nav").html());
             var navList = localStorage.getItem('nav');
@@ -135,13 +136,13 @@ Template7.data['page:popup'] = function(page) {
         console.log('show');
         isWideScreen = localStorage.getItem("isWideScreen");
         if (isWideScreen === "true") {
-           $("body").addClass('w-800'); 
-           $('#isWideScreen').click();
+            $("body").addClass('w-800');
+            $('#isWideScreen').click();
         }
         isDark = localStorage.getItem("isDark");
         if (isDark === "true") {
-           $("body").addClass('layout-dark'); 
-           $('#isDark').click();
+            $("body").addClass('layout-dark');
+            $('#isDark').click();
         }
 
         $.ajax({
@@ -155,11 +156,11 @@ Template7.data['page:popup'] = function(page) {
                 var mediaData = $(data).find(site.media) || {};
 
                 // 去除知乎问题中的重复项，并对个别订阅源作条目限制
-                if (site.name.indexOf("最新回答") !== -1){
+                if (site.name.indexOf("最新回答") !== -1) {
                     times = 5;
-                } else if(site.name.indexOf("ONE") !== -1) {
+                } else if (site.name.indexOf("ONE") !== -1) {
                     times = 9;
-                } else if (site.name.indexOf("最新问题") !== -1){
+                } else if (site.name.indexOf("最新问题") !== -1) {
                     parsedData = unique(parsedData);
                 }
 
@@ -225,8 +226,8 @@ Template7.data['page:popup'] = function(page) {
     };
 
     // 打开应用时，加载第一个订阅源
-    var listInit = function(){
-        if($('.view-main ul li').length > 3) return;
+    var listInit = function() {
+        if ($('.view-main ul li').length > 3) return;
         var dataID = localStorage.getItem('dataID') || "1";
         //console.log("ID" + dataID);
         popup.show(dataID);
@@ -243,7 +244,7 @@ Template7.data['page:popup'] = function(page) {
 
     // 设定后台打开链接
     // 必须委托绑定，否则 chrome.tabs 设定会失效
-    $('body').off('click', '.card a.item-link',  listItemHandler);
+    $('body').off('click', '.card a.item-link', listItemHandler);
     listItemHandler = function(e) {
         e.preventDefault();
         chrome.tabs.create({
@@ -251,16 +252,16 @@ Template7.data['page:popup'] = function(page) {
             selected: false
         });
     };
-    $('body').on('click', '.card a.item-link',  listItemHandler);
+    $('body').on('click', '.card a.item-link', listItemHandler);
 
     // 滚动时，隐藏上方navbar，并显示gotop按钮
-    $(".view-main .page-content").on("scroll", function(e){
-        $(this).scrollTop() >= 100 ? $$(".view-main .navbar").hide(800): $$(".view-main .navbar").show(800);
-        $(this).scrollTop() >= 200 ? $$('.gotop').show(400): $$('.gotop').hide(400);
+    $(".view-main .page-content").on("scroll", function(e) {
+        $(this).scrollTop() >= 100 ? $$(".view-main .navbar").hide(800) : $$(".view-main .navbar").show(800);
+        $(this).scrollTop() >= 200 ? $$('.gotop').show(400) : $$('.gotop').hide(400);
     });
 };
 
-$(document).on('pageInit', function (e) {
+$(document).on('pageInit', function(e) {
     // Get page data from event data
     var page = e.detail.page;
 
@@ -271,7 +272,7 @@ $(document).on('pageInit', function (e) {
     }
 })
 
-function rotate (direction) {
+function rotate(direction) {
     var dire = 'rotate-' + direction
     console.log(dire);
     $('.list-block ul li').addClass(dire);
@@ -283,14 +284,14 @@ function cacheCurrent() {
     localStorage.setItem('listItems', listItems);
 }
 
-$('body').on('touchstart click','.gotop',function () {
-    $$('.view-main .page-content').scrollTop(0,800);
+$('body').on('touchstart click', '.gotop', function() {
+    $$('.view-main .page-content').scrollTop(0, 800);
 });
 
-function unique(array){
+function unique(array) {
     var n = [];
     var m = [];
-    for(var i = 0; i < array.length; i++){
+    for (var i = 0; i < array.length; i++) {
         var title = $.trim($(array[i]).text());
 
         if (m.indexOf(title) == -1) {
@@ -302,18 +303,18 @@ function unique(array){
     return n;
 }
 
-function getOptionList(){
+function getOptionList() {
     var optionList = {};
     optionList.domain = 'http://git.oschina.net/cyio/tenread/raw/master/data/';
-    $$.getJSON(optionList.domain + 'catalog.json', function (d) {
+    $$.getJSON(optionList.domain + 'catalog.json', function(d) {
         optionList.catalogs = d;
         optionList.slug = d[0].slug;
         console.log(optionList.slug);
     });
 
-    optionList.show = function (slug) {
+    optionList.show = function(slug) {
         optionList.slug = slug;
-        $$.getJSON(optionList.domain + slug + '.json', function (d) {
+        $$.getJSON(optionList.domain + slug + '.json', function(d) {
             optionList.currentSites = d;
         });
     };
@@ -323,9 +324,9 @@ getOptionList();
 
 $('#isWideScreen').click(function() {
     myApp.closePanel();
-    
-    if(this.checked) {
-        $("body").addClass('w-800');     
+
+    if (this.checked) {
+        $("body").addClass('w-800');
     } else {
         $("body").removeClass('w-800');
     }
@@ -335,12 +336,31 @@ $('#isWideScreen').click(function() {
 
 $('#isDark').click(function() {
     myApp.closePanel();
-    
-    if(this.checked) {
+
+    if (this.checked) {
         $("body").addClass('layout-dark');
     } else {
         $("body").removeClass('layout-dark');
-    }    
-    
+    }
+
     localStorage.setItem("isDark", this.checked);
+});
+
+$('#submit').click(function() {
+    myApp.closePanel();
+    var val = $('#addSite').val()
+    site = localStorage.getItem("mySite");
+    if (val) {
+        site = val;
+        localStorage.setItem("mySite", site);
+    } else if (!site) {
+        myApp.alert('input');
+    }
+    var siteNode = '<iframe src=' + site + '></iframe>'
+    $(".view-main .page-content").replaceWith(siteNode);
+    $('.view-left').hide();
+    $('.view-main .navbar').hide();
+    $('.view-main').css('width', '100%');
+    // $('.navbar').css('background', 'transparent').css('background-image', '-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(76, 76, 76, 0.5)), to(rgba(50, 205, 104, 0.1))) transparent;');
+    // $('.main-title').text("");
 });

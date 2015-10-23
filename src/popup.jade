@@ -29,7 +29,7 @@ head
               .item-media
                 i.iconfont.icon-qmark
         li 
-          .item-content.wide-screen
+          .item-content
             .item-inner
               .item-title.label 横屏模式
               .item-input
@@ -37,13 +37,22 @@ head
                   input(type='checkbox' name="" id="isWideScreen")
                   .checkbox
         li 
-          .item-content.wide-screen
+          .item-content
             .item-inner
               .item-title.label 夜间模式
               .item-input
                 label.label-switch
                   input(type='checkbox' name="" id="isDark")
-                  .checkbox            
+                  .checkbox
+        li.add-site
+          .item-content
+            .item-inner
+              .item-input
+                input(type='url', placeholder='URL' id="addSite")
+              .item-submit
+                input(type="button", id="submit" value="打开").button
+              
+                       
     .commend-badge
       i.iconfont.icon-commend
       span 推荐
