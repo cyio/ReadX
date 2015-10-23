@@ -3,9 +3,10 @@ var myApp = new Framework7({});
 
 // Export selectors engine
 var $$ = Dom7;
-var widenScreenHandler;
 var listItemHandler;
 var listItems;
+var isWideScreen;
+var isDark;
 
 // Add views
 var leftView = myApp.addView('.view-left', {
@@ -132,6 +133,16 @@ Template7.data['page:popup'] = function(page) {
         // console.log(site.name);
         $('.view-main .sliding').text(site.name);
         console.log('show');
+        isWideScreen = localStorage.getItem("isWideScreen");
+        if (isWideScreen === "true") {
+           $("body").addClass('w-800'); 
+           $('#isWideScreen').click();
+        }
+        isDark = localStorage.getItem("isDark");
+        if (isDark === "true") {
+           $("body").addClass('layout-dark'); 
+           $('#isDark').click();
+        }
 
         $.ajax({
             type: 'get',
@@ -314,10 +325,12 @@ $('#isWideScreen').click(function() {
     myApp.closePanel();
     
     if(this.checked) {
-        $("body").addClass('w-800');
+        $("body").addClass('w-800');     
     } else {
         $("body").removeClass('w-800');
-    }    
+    }
+    // myApp.alert(this.checked);
+    localStorage.setItem("isWideScreen", this.checked);
 });
 
 $('#isDark').click(function() {
@@ -328,4 +341,6 @@ $('#isDark').click(function() {
     } else {
         $("body").removeClass('layout-dark');
     }    
+    
+    localStorage.setItem("isDark", this.checked);
 });
