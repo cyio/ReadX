@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'handanti';
+  src: url('../font/handanti.eot');
+  src:
+    url('../font/handanti.eot?#font-spider') format('embedded-opentype'),
+    // url('../font/handanti.woff') format('woff'),
+    url('../font/handanti.ttf') format('truetype'),
+    url('../font/handanti.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main-title {
+    font-family: 'handanti';
+}

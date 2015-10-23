@@ -110,15 +110,15 @@ Template7.data['page:popup'] = function(page) {
 
     // 导航：支持并记忆用户手动排序
     $$('.toggle-sortable').on('click', function () {
-      if ($$('.toggle-sortable').attr("open") == "true") {
-        localStorage.setItem('nav', $(".left-nav").html());
-        var navList = localStorage.getItem('nav');
-        $$('.toggle-sortable').attr("open", false);
-        $$('.left-nav li').removeClass('onsort');
-      } else {
-        $$('.toggle-sortable').attr('open', true);
-        $$('.left-nav li').addClass('onsort');
-      }
+        if ($$('.toggle-sortable').attr("open") == "true") {
+            localStorage.setItem('nav', $(".left-nav").html());
+            var navList = localStorage.getItem('nav');
+            $$('.toggle-sortable').attr("open", false);
+            $$('.left-nav li').removeClass('onsort');
+        } else {
+            $$('.toggle-sortable').attr('open', true);
+            $$('.left-nav li').addClass('onsort');
+        }
     });
 
     popup.show = function(index) {
@@ -217,7 +217,7 @@ Template7.data['page:popup'] = function(page) {
     var listInit = function(){
         if($('.view-main ul li').length > 3) return;
         var dataID = localStorage.getItem('dataID') || "1";
-        console.log("ID" + dataID);
+        //console.log("ID" + dataID);
         popup.show(dataID);
         $('.left-nav li').eq(dataID).addClass('active');
     }();
@@ -272,19 +272,9 @@ function cacheCurrent() {
     localStorage.setItem('listItems', listItems);
 }
 
-$(".wide-screen").off('click', widenScreenHandler);
-widenScreenHandler = function(){
-    cacheCurrent();
-    $("body").addClass('w-800');
-    // $(".view-main").addClass('w-800');
-    // $(".view-left").hide();
-};
-$(".wide-screen").on('click', widenScreenHandler);
-
 $('body').on('touchstart click','.gotop',function () {
     $$('.view-main .page-content').scrollTop(0,800);
 });
-
 
 function unique(array){
     var n = [];
@@ -300,3 +290,42 @@ function unique(array){
     }
     return n;
 }
+
+function getOptionList(){
+    var optionList = {};
+    optionList.domain = 'http://git.oschina.net/cyio/tenread/raw/master/data/';
+    $$.getJSON(optionList.domain + 'catalog.json', function (d) {
+        optionList.catalogs = d;
+        optionList.slug = d[0].slug;
+        console.log(optionList.slug);
+    });
+
+    optionList.show = function (slug) {
+        optionList.slug = slug;
+        $$.getJSON(optionList.domain + slug + '.json', function (d) {
+            optionList.currentSites = d;
+        });
+    };
+};
+
+getOptionList();
+
+$('#isWideScreen').click(function() {
+    myApp.closePanel();
+    
+    if(this.checked) {
+        $("body").addClass('w-800');
+    } else {
+        $("body").removeClass('w-800');
+    }    
+});
+
+$('#isDark').click(function() {
+    myApp.closePanel();
+    
+    if(this.checked) {
+        $("body").addClass('layout-dark');
+    } else {
+        $("body").removeClass('layout-dark');
+    }    
+});

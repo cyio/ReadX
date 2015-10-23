@@ -11,7 +11,7 @@ head
   link(rel='stylesheet', href='/css/framework7.ios.colors.css')
   //- link(rel='stylesheet', href='/css/font-awesome.min.css')
   link(rel='stylesheet', href='/css/app.css')
-//- body.layout-dark    
+  //- link(rel='stylesheet', href='/css/cnfont.css')
 // Status bar overlay for fullscreen mode
 .statusbar-overlay
 // Panels overlay
@@ -20,27 +20,30 @@ head
 .panel.panel-right.panel-reveal
   .title-block 设置
   .content-block
-    ul.panel-list
-      li
-        a(href="about.html", data-view=".view-main" class="wide-screen").close-panel
-          .item-inner
-            .item-title 开发者博客
-            .item-media
-              i.iconfont.icon-qmark
-    .list-block
-      ul
-        // Single radio input
+    form#my-form.store-data
+      ul.panel-list
         li
-          label.label-radio.item-content
-            // Checked by default
-            input(type='radio', name='my-radio', value='Books', checked='checked')
+          a(href="about.html", data-view=".view-main" class="wide-screen").close-panel
             .item-inner
-              .item-title Books          
-        li
-          label.label-radio.item-content
-            input(type='radio', name='my-radio', value='Books')
+              .item-title 开发者博客
+              .item-media
+                i.iconfont.icon-qmark
+        li 
+          .item-content.wide-screen
             .item-inner
-              .item-title Movies
+              .item-title.label 横屏模式
+              .item-input
+                label.label-switch
+                  input(type='checkbox' name="" id="isWideScreen")
+                  .checkbox
+        li 
+          .item-content.wide-screen
+            .item-inner
+              .item-title.label 夜间模式
+              .item-input
+                label.label-switch
+                  input(type='checkbox' name="" id="isDark")
+                  .checkbox            
     .commend-badge
       i.iconfont.icon-commend
       span 推荐
@@ -78,6 +81,8 @@ head
             ul              
     .operation-over
       i.fa.fa-arrow-circle-up.gotop
+.overlay
+  img(src="")  
 // 你的html代码
 script(type='text/javascript', src='/js/framework7.js', charset='utf-8')
 script(type='text/javascript', src='/js/zepto.js', charset='utf-8')

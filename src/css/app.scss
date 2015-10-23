@@ -1,4 +1,5 @@
-@import "iconfont";
+// @import "iconfont";
+@import "cnfont";
 
 $dark-green: #59E453;
 $dark-green-border: #254D23;
@@ -322,4 +323,33 @@ i.gotop{
     cursor: pointer;
     transition: opacity .3s;
   }
+}
+
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white, 50%)) {
+::-webkit-scrollbar {
+width: $size;
+ height: $size;
+ }
+::-webkit-scrollbar-thumb {
+background: $foreground-color;
+ }
+::-webkit-scrollbar-track {
+background: $background-color;
+ }
+// For Internet Explorer
+ body {
+scrollbar-face-color: $foreground-color;
+ scrollbar-track-color: $background-color;
+ }
+}
+
+@include scrollbars(.3em, #AAAAAB, #F1F1F1);
+
+.card img {
+    position: relative;
+    top: 0px;
+    transition: transform .2s ease-in-out;
+}
+.card img:hover {
+    transform: translate3d(0px, -3px, 0px);
 }
