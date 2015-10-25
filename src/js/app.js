@@ -26,7 +26,7 @@ var myApp = new Framework7();
 
     Template7.data['page:popup'] = function(page) {
         var popup = {};
-        popup.initSites = [{
+        popup.initSites = [ {
             "name": "知乎 - 最新问题",
             "icon": "http://static.zhihu.com/static/favicon.ico",
             "url": "http://www.zhihu.com/",
@@ -96,7 +96,7 @@ var myApp = new Framework7();
                 $(".left-nav").append(navNode);
             }
 
-            localStorage.setItem('nav', $(".left-nav").html());
+            localStorage.setItem('nav', $(".left-nav").html());            
         };
 
         var navList = localStorage.getItem('nav');
@@ -108,6 +108,17 @@ var myApp = new Framework7();
             console.log($(".left-nav img"));
             var dataID = $(".left-nav img").attr("data-id");
             localStorage.setItem('dataID', dataID);
+            
+            isWideScreen = localStorage.getItem("isWideScreen");
+            if (isWideScreen === "true") {
+                $("body").addClass('w-800');
+                $('#isWideScreen').click();
+            }
+            isDark = localStorage.getItem("isDark");
+            if (isDark === "true") {
+                $("body").addClass('layout-dark');
+                $('#isDark').click();
+            }
         } else {
             createLeftNav();
         }
@@ -136,16 +147,6 @@ var myApp = new Framework7();
             // console.log(site.name);
             $('.view-main .sliding').text(site.name);
             console.log('show');
-            isWideScreen = localStorage.getItem("isWideScreen");
-            if (isWideScreen === "true") {
-                $("body").addClass('w-800');
-                $('#isWideScreen').click();
-            }
-            isDark = localStorage.getItem("isDark");
-            if (isDark === "true") {
-                $("body").addClass('layout-dark');
-                $('#isDark').click();
-            }
 
             $.ajax({
                 type: 'get',
@@ -153,6 +154,7 @@ var myApp = new Framework7();
                 timeout: 10000,
                 success: function(data) {
                     // 找到选择器节点，输出链接和标题等
+                    console.log(data);
                     var parsedData = $(data).find(site.selector);
                     console.log(parsedData);
                     var mediaData = $(data).find(site.media) || {};
@@ -207,8 +209,7 @@ var myApp = new Framework7();
                         $('li.card a').css({
                             'white-space': 'normal'
                         });
-                    }
-
+                    }                    
                 }
             });
 
@@ -241,7 +242,7 @@ var myApp = new Framework7();
             $(this).addClass('active');
             var id = $(this).find('img').attr('data-id');
             var ul = $('.view-main ul');
-            popup.show(id);
+            popup.show(id);    
         });
 
         // 设定后台打开链接
