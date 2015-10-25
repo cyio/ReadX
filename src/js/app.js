@@ -170,8 +170,8 @@ Template7.data['page:popup'] = function(page) {
                         title: $.trim($(parsedData[i]).text()),
                         href: $(parsedData[i]).attr("href"),
                         media: $(mediaData[i]).attr("src") || ""
-                    };
-                    // console.log("debug: " + article.href);
+                    };                    
+                    
                     if (article.href.indexOf("http") == -1) {
                         var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
                         if (article.href[0] != "/") {
@@ -180,7 +180,7 @@ Template7.data['page:popup'] = function(page) {
                         article.href = baseUrl + article.href;
                         article.media = baseUrl + article.media;
                     };
-
+                    console.log("debug: " + article.media);
                     // 部分订阅源需要单独指定文章标题
                     if (article.href.indexOf("qdaily") !== -1) {
                         article.title = $.trim($($(data).find(site.title)[i]).text())

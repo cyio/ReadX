@@ -59,6 +59,13 @@
     "url": "http://news.pingwest.com/",
     "selector": ".demo-wall ul a"
 }, {
+    "name": "Youtube",
+    "icon": "https://s.ytimg.com/yts/img/favicon-vflz7uhzw.ico",
+    "url": "https://www.youtube.com/",
+    "selector": ".item-section .yt-lockup-title a.yt-uix-sessionlink",
+    "media": ".item-section .yt-thumb",
+    "isShow": true
+}, {
     "name": "极客公园",
     "icon": "http://www.geekpark.net/icons/72x72.png",
     "url": "http://www.geekpark.net/collections/%E7%BC%96%E8%BE%91%E7%B2%BE%E9%80%89",
