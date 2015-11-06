@@ -11,5 +11,14 @@
 }
 
 .main-title {
-    font-family: 'handanti', 'Microsoft Yahei';
+    font-family: 'handanti', 'vgasys', 'Microsoft Yahei';
+}
+
+//en font
+
+@font-face {
+  font-family: 'vgasys';
+  src: url('../font/vgasys.otf');
+  font-weight: normal;
+  font-style: normal;
 }
