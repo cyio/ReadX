@@ -1,0 +1,25 @@
+{
+  "name": "readx",
+  "version": "1.0.0",
+  "description": "Inspired by [十阅 wtser/tenread](https://github.com/wtser/tenread/)",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "gulp-dest": "^0.2.3",
+    "gulp-util": "^3.0.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyio/ReadX.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyio/ReadX/issues"
+  },
+  "homepage": "https://github.com/cyio/ReadX#readme"
+}
