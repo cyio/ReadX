@@ -35,3 +35,6 @@ ReadX支持图文混排、知乎等订阅源。
 * 自动化构建工具：fis3
 * 应用框架：[Framework7](http://www.idangero.us/framework7/) + Zepto
 
+## 其他
+
+订阅源要求订阅内容能从HTML中获取，比如bilibili就不能。
