@@ -86,7 +86,12 @@ var myApp = new Framework7();
             "selector": "a.article-list-title"
         }];
         // TODO: 处理外部数据
-        popup.sites = popup.initSites;
+        // popup.sites = popup.initSites;
+        popup.sites = JSON.parse(localStorage.getItem("sites")) || [];
+        if (popup.sites.length == 0) {
+            popup.sites = popup.initSites;
+            localStorage.setItem("sites", JSON.stringify(popup.sites));
+        }
 
         function createLeftNav(data) {
             for (var i = 0; i < popup.sites.length; i++) {
@@ -96,7 +101,7 @@ var myApp = new Framework7();
                 $(".left-nav").append(navNode);
             }
 
-            localStorage.setItem('nav', $(".left-nav").html());            
+            localStorage.setItem('nav', $(".left-nav").html());
         };
 
         var navList = localStorage.getItem('nav');
@@ -108,7 +113,7 @@ var myApp = new Framework7();
             console.log($(".left-nav img"));
             var dataID = $(".left-nav img").attr("data-id");
             localStorage.setItem('dataID', dataID);
-            
+
             isWideScreen = localStorage.getItem("isWideScreen");
             if (isWideScreen === "true") {
                 $("body").addClass('w-800');
@@ -154,7 +159,7 @@ var myApp = new Framework7();
                 timeout: 10000,
                 success: function(data) {
                     // 找到选择器节点，输出链接和标题等
-                    console.log(data);
+                    //console.log(data);
                     var parsedData = $(data).find(site.selector);
                     console.log(parsedData);
                     var mediaData = $(data).find(site.media) || {};
@@ -174,8 +179,8 @@ var myApp = new Framework7();
                             title: $.trim($(parsedData[i]).text()),
                             href: $(parsedData[i]).attr("href"),
                             media: $(mediaData[i]).attr("src") || ""
-                        };                    
-                        
+                        };
+
                         if (article.href.indexOf("http") == -1) {
                             var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
                             if (article.href[0] != "/") {
@@ -209,7 +214,7 @@ var myApp = new Framework7();
                         $('li.card a').css({
                             'white-space': 'normal'
                         });
-                    }                    
+                    }
                 }
             });
 
@@ -242,7 +247,7 @@ var myApp = new Framework7();
             $(this).addClass('active');
             var id = $(this).find('img').attr('data-id');
             var ul = $('.view-main ul');
-            popup.show(id);    
+            popup.show(id);
         });
 
         // 设定后台打开链接
@@ -312,7 +317,7 @@ var myApp = new Framework7();
         $$.getJSON(optionList.domain + 'catalog.json', function(d) {
             optionList.catalogs = d;
             optionList.slug = d[0].slug;
-            console.log(optionList.slug);
+            //console.log(optionList.slug);
         });
 
         optionList.show = function(slug) {
@@ -367,4 +372,28 @@ var myApp = new Framework7();
         // $('.navbar').css('background', 'transparent').css('background-image', '-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(76, 76, 76, 0.5)), to(rgba(50, 205, 104, 0.1))) transparent;');
         // $('.main-title').text("");
     });
+    
+    var optionListHandler = function(){
+        var optionList = {};
+        optionList.domain = 'http://git.oschina.net/cyio/tenread/raw/master/data/';      
+        optionList.sites = JSON.parse(localStorage.getItem("sites")) || [];
+        optionList.show = function(slug){
+            optionList.slug = slug;
+            $$.getJSON(optionList.domain + slug + '.json', function (d) {
+                console.log(d);
+                optionList.currentSites = d;
+            });
+            
+        };
+        optionList.subscribe = function(){};
+        
+        $$.getJSON(optionList.domain + 'catalog.json', function (d) {
+            console.log(d);
+            optionList.catalogs = d;
+            optionList.slug = d[0].slug;
+            optionList.show(optionList.slug);
+        });
+    };
+    console.log();
+    optionListHandler();
 })(myApp);

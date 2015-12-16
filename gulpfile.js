@@ -1,13 +1,13 @@
 (function(){
     'use strict';    
     var gulp = require('gulp'),
-        connect = require('gulp-connect'),
         sass = require('gulp-ruby-sass'),
         jade = require('gulp-jade'),
         uglify = require('gulp-uglify'),
         browsersync = require('browser-sync'),
         dest = require('gulp-dest'),
         reload = browsersync.reload,
+        sourcemaps = require('gulp-sourcemaps'),
         paths = {
             root: './',
             build: {
@@ -37,8 +37,9 @@
     });
     
     gulp.task('sass', function () {
-      return sass(paths.source.root + '/css/*.scss')
+      return sass(paths.source.root + '/css/*.scss', { sourcemap: true })
         .on('error', sass.logError)
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(paths.build.styles))
         .pipe(reload({stream:true}));
     });
