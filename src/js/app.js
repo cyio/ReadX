@@ -71,7 +71,7 @@ var myApp = new Framework7();
             "isShow": true
         }, {
             "name": "果壳科学人",
-            "icon": "http://static.guokr.com/apps/minisite/images/688fdef8.i-logo.png",
+            "icon": "http://www.guokr.com/favicon.ico",
             "url": "http://www.guokr.com/scientific/",
             "selector": ".article-title"
         }, {
