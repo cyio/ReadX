@@ -1,7 +1,7 @@
 (function(){
     'use strict';    
     var gulp = require('gulp'),
-        sass = require('gulp-ruby-sass'),
+        sass = require('gulp-sass'),
         jade = require('gulp-jade'),
         uglify = require('gulp-uglify'),
         browsersync = require('browser-sync'),
@@ -32,16 +32,16 @@
                 baseDir: "./"
             },
             open: false,
-            host: "192.168.1.143"
+            host: "127.0.0.1"
             });
     });
-    
+        
     gulp.task('sass', function () {
-      return sass(paths.source.root + '/css/*.scss', { sourcemap: true })
-        .on('error', sass.logError)
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(paths.build.styles))
-        .pipe(reload({stream:true}));
+     return gulp.src(paths.source.root + '/css/*.scss')
+      .pipe(sourcemaps.init())
+      .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest(paths.build.styles))
+      .pipe(reload({stream:true}));
     });
     
     gulp.task('templates', function() {
@@ -75,7 +75,7 @@
     
     gulp.task('scripts', function () {
         return gulp.src(paths.source.scripts)
-            .pipe(uglify())
+            // .pipe(uglify())
             .pipe(gulp.dest(paths.build.scripts))
             .pipe(reload({stream:true}));
     });
@@ -88,7 +88,7 @@
     
     gulp.task('watch', function () {
         gulp.watch(paths.source.scripts, [ 'scripts' ]);
-        gulp.watch(paths.source.styles + '*.scss', [ 'styles' ]);
+        gulp.watch(paths.source.styles + '*.scss', [ 'sass' ]);
         gulp.watch(paths.source.templates, [ 'templates' ]);
     });
 })();        
