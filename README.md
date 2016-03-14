@@ -1,6 +1,6 @@
 # ReadX 年轻人的热帖订阅神器
 
-Inspired by [十阅 wtser/tenread](https://github.com/wtser/tenread/)
+Inspired by [十阅 wtser/ten-read](https://github.com/wtser/ten-read/)
 
 [Chrome扩展下载](https://github.com/cyio/ReadX/raw/master/ReadX.crx)，需手动安装。
 
@@ -31,8 +31,7 @@ ReadX支持图文混排、知乎等订阅源。
 ## 工具、框架
 
 * 样式预编译器：SCSS
-* 包管理：Bower
-* 自动化构建工具：fis3
+* 自动化构建工具：Gulp
 * 应用框架：[Framework7](http://www.idangero.us/framework7/) + Zepto
 
 ## 其他
