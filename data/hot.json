@@ -1,0 +1,59 @@
+[{
+    "name": "知乎 - 最新问题",
+    "icon": "http://static.zhihu.com/static/favicon.ico",
+    "url": "http://www.zhihu.com/",
+    "selector": ".content>h2>a",
+    "isShow": true
+}, {
+    "name": "知乎 - 最新回答",
+    "icon": "http://static.zhihu.com/static/favicon.ico",
+    "url": "http://www.zhihu.com/",
+    "selector": ".zh-summary>a.toggle-expand",
+    "isShow": true
+}, {
+    "name": "Hacker News",
+    "icon": "https://news.ycombinator.com/favicon.ico",
+    "url": "https://news.ycombinator.com/",
+    "selector": ".title>a",
+    "isShow": true
+}, {
+    "name": "好奇心日报",
+    "icon": "http://www.qdaily.com/favicon.ico",
+    "url": "http://www.qdaily.com/tags/1068.html",
+    "selector": ".com-grid-banner-article",
+    "media": ".imgcover>img",
+    "title": ".title-ribbon > h1"
+}, {
+    "name": "SegmentFault",
+    "url": "http://segmentfault.com/blogs",
+    "icon": "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
+    "selector": ".title>a",
+    "isShow": true
+}, {
+    "name": "简书",
+    "url": "http://www.jianshu.com/trending/now",
+    "icon": "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
+    "selector": "h4>a",
+    "isShow": false
+}, {
+    "name": "V2EX",
+    "icon": "http://www.v2ex.com/static/img/icon_rayps_64.png",
+    "url": "http://www.v2ex.com/?tab=hot",
+    "selector": "span.item_title > a",
+    "isShow": true
+}, {
+    "name": "果壳科学人",
+    "icon": "http://www.guokr.com/favicon.ico",
+    "url": "http://www.guokr.com/scientific/",
+    "selector": ".article-title"
+}, {
+    "name": "虎嗅看点",
+    "icon": "http://www.huxiu.com/favicon.ico",
+    "url": "http://www.huxiu.com/focus",
+    "selector": "h3>a"
+}, {
+    "name": "前端开发 - 推酷",
+    "icon": "http://www.tuicool.com/favicon.ico",
+    "url": "http://www.tuicool.com/topics/11000079?st=0&lang=0",
+    "selector": "a.article-list-title"
+}]

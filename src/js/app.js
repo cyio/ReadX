@@ -1,6 +1,9 @@
 // Initialize your app
-var myApp = new Framework7();
+var myApp = new Framework7({
+    init: false
+});
 
+// myApp作为域
 (function(context){
 
     // Export selectors engine
@@ -20,11 +23,14 @@ var myApp = new Framework7();
         // Because we use fixed-through navbar we can enable dynamic navbar
         dynamicNavbar: true
     });
-
+    
+    myApp.init();
+    
     // 必须手动路由加载
     mainView.router.loadPage('popup.html');
+    // mainView.router.back();
 
-    Template7.data['page:popup'] = function(page) {
+    Template7.data['page:popup'] = function(data) {
         var popup = {};
         popup.initSites = [ {
             "name": "知乎 - 最新问题",
@@ -45,19 +51,6 @@ var myApp = new Framework7();
             "selector": ".title>a",
             "isShow": true
         }, {
-            "name": "好奇心日报",
-            "icon": "http://www.qdaily.com/favicon.ico",
-            "url": "http://www.qdaily.com/tags/1068.html",
-            "selector": ".com-grid-banner-article",
-            "media": ".imgcover>img",
-            "title": ".title-ribbon > h1"
-        }, {
-            "name": "SegmentFault",
-            "url": "http://segmentfault.com/blogs",
-            "icon": "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
-            "selector": ".title>a",
-            "isShow": true
-        }, {
             "name": "简书",
             "url": "http://www.jianshu.com/trending/now",
             "icon": "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
@@ -69,16 +62,6 @@ var myApp = new Framework7();
             "url": "http://www.v2ex.com/?tab=hot",
             "selector": "span.item_title > a",
             "isShow": true
-        }, {
-            "name": "果壳科学人",
-            "icon": "http://www.guokr.com/favicon.ico",
-            "url": "http://www.guokr.com/scientific/",
-            "selector": ".article-title"
-        }, {
-            "name": "虎嗅看点",
-            "icon": "http://www.huxiu.com/favicon.ico",
-            "url": "http://www.huxiu.com/focus",
-            "selector": "h3>a"
         }, {
             "name": "前端开发 - 推酷",
             "icon": "http://www.tuicool.com/favicon.ico",
@@ -267,6 +250,11 @@ var myApp = new Framework7();
             $(this).scrollTop() >= 100 ? $$(".view-main .navbar").hide(800) : $$(".view-main .navbar").show(800);
             $(this).scrollTop() >= 200 ? $$('.gotop').show(400) : $$('.gotop').hide(400);
         });
+        // var result = {
+        //     id: 'fi'
+        // };
+        // result.id = "popup";
+        // return result;
     };
 
     $(document).on('pageInit', function(e) {
@@ -278,6 +266,18 @@ var myApp = new Framework7();
             //myApp.alert('Here comes About page');
             Template7.data['page:popup']();
         }
+    })
+    
+    myApp.onPageInit('popup', function (page){
+        console.log('page init ' + page.name);
+        console.log('page context ' + page.context);
+        
+        new Vue({
+            el: '#main',
+            data: {
+                message: 'Hello Vue.js!'
+            }
+        })
     })
 
     function rotate(direction) {
