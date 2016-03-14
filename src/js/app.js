@@ -4,13 +4,13 @@ var myApp = new Framework7();
 (function(context){
 
     // Export selectors engine
-    var $$ = Dom7;
-    var listItemHandler;
-    var listItems;
-    var isWideScreen;
-    var isDark;
-    var mySite;
-
+    var $$ = Dom7,
+        listItemHandler,
+        listItems,
+        isWideScreen,
+        isDark,
+        mySite;
+    
     // Add views
     var leftView = myApp.addView('.view-left', {
         // Because we use fixed-through navbar we can enable dynamic navbar
@@ -282,7 +282,6 @@ var myApp = new Framework7();
 
     function rotate(direction) {
         var dire = 'rotate-' + direction
-        console.log(dire);
         $('.list-block ul li').addClass(dire);
     }
 

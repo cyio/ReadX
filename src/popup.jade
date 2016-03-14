@@ -82,9 +82,10 @@ head
     // Pages
     .pages
       // Page, data-page contains page name
-      .page(data-page='popup')
+      .page(data-page='popup' id='popup')
         // Scrollable page content
-        .page-content
+        .page-content(id="main")
+          .h3 {{message}}
           .list-block
             span.preloader
             ul              
@@ -95,4 +96,6 @@ head
 // 你的html代码
 script(type='text/javascript', src='/js/framework7.js', charset='utf-8')
 script(type='text/javascript', src='/js/zepto.js', charset='utf-8')
-script(src='/js/app.js')
+script(type='text/javascript', src='/js/vue.js', charset='utf-8')
+script(type='text/javascript', src='/js/app.js', charset='utf-8')
+script(type='text/javascript', src='/js/data.js', charset='utf-8')
